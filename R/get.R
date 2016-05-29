@@ -9,6 +9,13 @@ get <- function(value = NULL,
   config_file <- file.path(dir, file)
   config_yaml <- yaml::yaml.load_file(config_file)
 
+  # merge local config (if any)
+  local_config_file <- file_with_meta_ext(config_file, "local")
+  if (file.exists(local_config_file)) {
+    local_config_yaml <- yaml::yaml.load_file(local_config_file)
+    config_yaml <- merge_lists(config_yaml, local_config_yaml)
+  }
+
   # get the default config (required)
   default_config <- config_yaml[["default"]]
   if (is.null(default_config))
@@ -21,8 +28,6 @@ get <- function(value = NULL,
 
   # get the requested config
   active_config <- config_yaml[[config]]
-  if (is.null(active_config))
-    stop("Configuration '", config, "' not found in ", file)
 
   # if it isn't the default config then merge it with the default
   if (!identical(config, "default"))
@@ -59,3 +64,9 @@ merge_lists <- function (base_list, overlay_list, recursive = TRUE) {
     merged_list
   }
 }
+
+file_with_meta_ext <- function(file, meta_ext, ext = tools::file_ext(file)) {
+  paste(tools::file_path_sans_ext(file),
+        ".", meta_ext, ".", ext, sep = "")
+}
+

@@ -12,6 +12,3 @@ test_that("reading a value with no default value results in an error", {
                            config = "development"))
 })
 
-test_that("reading a non-existent config results in an error", {
-  expect_error(config::get(config = "nil"))
-})

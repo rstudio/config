@@ -4,6 +4,7 @@ Title: What the Package Does (Title Case)
 Version: 0.1.0
 Author: Who wrote it
 Imports:
+    tools,
     yaml (>= 2.1.13)
 Maintainer: Who to complain to <yourfault@somewhere.net>
 Description: More about what it does (maybe more than one line)

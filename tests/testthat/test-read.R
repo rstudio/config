@@ -29,3 +29,8 @@ test_that("configurations inherit from default", {
   expect_identical(conf$shape, "triangle")
 })
 
+test_that("local config overrides base config", {
+  conf <- config::get(dir = "config/local")
+  expect_identical(conf$shape, "rectangle")
+})
+
