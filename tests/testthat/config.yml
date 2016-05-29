@@ -1,0 +1,14 @@
+default:
+  color: "red"
+  shape: "square"
+
+development:
+  shape: "triangle"
+
+test:
+  color: "blue"
+
+production:
+  color: "green"
+  shape: "circle"
+
