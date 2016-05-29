@@ -42,9 +42,17 @@ get <- function(value = NULL,
   # get the requested config
   active_config <- config_yaml[[config]]
 
-  # if it isn't the default config then merge it with the default
-  if (!identical(config, "default"))
-    active_config <- merge_lists(default_config, active_config)
+  # if it isn't the default configuration then see if it inherits from
+  # another configuration. if it does then resolve and merge with it,
+  # if not then merge with the default
+  if (!identical(config, "default")) {
+    inherits <- active_config$inherits
+    if (!is.null(inherits))
+      active_config <- merge_lists(config::get(config = config, file = file),
+                                   active_config)
+    else
+      active_config <- merge_lists(default_config, active_config)
+  }
 
   # return either the entire config or a requested value
   if (!is.null(value))
