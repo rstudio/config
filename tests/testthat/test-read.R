@@ -1,4 +1,4 @@
-context("all")
+context("read")
 
 test_that("configuration file can be loaded", {
   config::get()

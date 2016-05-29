@@ -1,9 +1,9 @@
 
 #' @export
 get <- function(value = NULL,
+                config = Sys.getenv("R_CONFIG_NAME", "default"),
                 dir = ".",
-                file = "config.yml",
-                config = Sys.getenv("R_CONFIG_NAME", "default")) {
+                file = "config.yml") {
 
   # load the yaml
   config_file <- file.path(dir, file)
