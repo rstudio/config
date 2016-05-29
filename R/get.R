@@ -1,16 +1,29 @@
 
+#' Read configuration values
+#'
+#' Read from the currently active configuration, retreiving either a
+#' single named value or all values as a list.
+#'
+#' @param value Name of value (\code{NULL} to read all values)
+#' @param config Name of configuration to read from. Defaults to
+#'   the value of the \code{R_CONFIG_NAME} environment variable
+#'   ("default" if the variable does not exist).
+#' @param file Configuration file to read from (defaults to
+#'   "config.yml").
+#'
+#' @return The requested configuration value (or all values as
+#'   a list of \code{NULL} is passed for \code{value}).
+#'
 #' @export
 get <- function(value = NULL,
                 config = Sys.getenv("R_CONFIG_NAME", "default"),
-                dir = ".",
                 file = "config.yml") {
 
   # load the yaml
-  config_file <- file.path(dir, file)
-  config_yaml <- yaml::yaml.load_file(config_file)
+  config_yaml <- yaml::yaml.load_file(file)
 
   # merge local config (if any)
-  local_config_file <- file_with_meta_ext(config_file, "local")
+  local_config_file <- file_with_meta_ext(file, "local")
   if (file.exists(local_config_file)) {
     local_config_yaml <- yaml::yaml.load_file(local_config_file)
     config_yaml <- merge_lists(config_yaml, local_config_yaml)

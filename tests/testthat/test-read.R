@@ -30,7 +30,10 @@ test_that("configurations inherit from default", {
 })
 
 test_that("local config overrides base config", {
-  conf <- config::get(dir = "config/local")
+  conf <- config::get(file = "config/local/config.yml")
   expect_identical(conf$shape, "rectangle")
 })
 
+test_that("configuration can be read from alternate file", {
+  expect_identical(config::get("color", file = "config/conf.yml"), "red")
+})

@@ -1,14 +1,13 @@
 context("errors")
 
 test_that("config file with no defaults results in an error", {
-  expect_error(config::get(dir = "errors", file = "nodefault.yml"))
+  expect_error(config::get(file = "errors/nodefault.yml"))
 })
 
 
 test_that("reading a value with no default value results in an error", {
   expect_error(config::get(value = "shape",
-                           dir = "errors",
-                           file = "nodefaultvalue.yml",
-                           config = "development"))
+                           config = "development",
+                           file = "errors/nodefaultvalue.yml"))
 })
 
