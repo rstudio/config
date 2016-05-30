@@ -48,7 +48,7 @@ get <- function(value = NULL,
   if (!identical(config, "default")) {
     inherits <- active_config$inherits
     if (!is.null(inherits))
-      active_config <- merge_lists(config::get(config = config, file = file),
+      active_config <- merge_lists(config::get(config = inherits, file = file),
                                    active_config)
     else
       active_config <- merge_lists(default_config, active_config)
