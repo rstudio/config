@@ -42,3 +42,17 @@ test_that("local config overrides base config", {
 test_that("configuration can be read from alternate file", {
   expect_identical(config::get("color", file = "config/conf.yml"), "red")
 })
+
+test_that("active configuration can be changed via an environment variable", {
+  # restore previous state of environment after test
+  previous_config <- Sys.getenv("R_CONFIG_NAME", unset = NA);
+  on.exit({
+    if (!is.na(previous_config))
+      Sys.setenv(R_CONFIG_NAME = previous_config)
+    else
+      Sys.unsetenv("R_CONFIG_NAME")
+  }, add = TRUE)
+
+  Sys.setenv(R_CONFIG_NAME = "production")
+  expect_identical(config::get("shape"), "circle")
+})
