@@ -23,11 +23,6 @@ test_that("configurations override default", {
   expect_identical(conf$shape, "circle")
 })
 
-test_that("local config overrides base config", {
-  conf <- config::get(file = "config/local/config.yml")
-  expect_identical(conf$shape, "rectangle")
-})
-
 test_that("configuration can be read from alternate file", {
   expect_identical(config::get("color", file = "config/conf.yml"), "red")
 })
