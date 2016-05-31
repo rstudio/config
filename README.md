@@ -1,7 +1,5 @@
 config package for R
 ================
-J.J. Allaire
-2016-05-31
 
 The **config** package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.
 

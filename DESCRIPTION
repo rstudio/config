@@ -13,6 +13,7 @@ Description: Manage configuration values across multiple environments (e.g.
   the current environment and returns the appropriate value.
 License: GPL-3
 Suggests:
-    testthat
+    testthat,
+    knitr
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr

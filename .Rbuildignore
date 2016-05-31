@@ -1,8 +1,7 @@
 ^.*\.Rproj$
 ^\.Rproj\.user$
-config.yml
-README.*
-vignettes/*.yml
-vignettes/*.html
+README\.md
+README_files
+vignettes/.*html
 
 

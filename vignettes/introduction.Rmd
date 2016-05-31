@@ -1,7 +1,5 @@
 ---
 title: "config package for R"
-author: "J.J. Allaire"
-date: "`r Sys.Date()`"
 output: 
   rmarkdown::html_vignette:
     readme: true
@@ -12,7 +10,7 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(results = 'hide')
+knitr::opts_chunk$set(eval = FALSE, results = 'hide')
 Sys.setenv(R_CONFIG_NAME = "default")
 ```
 
