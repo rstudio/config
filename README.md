@@ -1,12 +1,12 @@
 config package for R
 ================
 
-The **config** package makes it easy to manage environment specific configuration values For example, you might want to use distinct values for development, testing, and production environments.
+The **config** package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.
 
 Usage
 -----
 
-Configurations are defined using a [YAML](http://www.yaml.org/about.html) text file and are stored (by default) in a file named **config.yml**. Configuration files include default values as well as values for arbitrary other named configurations, for example:
+Configurations are defined using a [YAML](http://www.yaml.org/about.html) text file and are read (by default) from a file named **config.yml** in the current working directory. Configuration files include default values as well as values for arbitrary other named configurations, for example:
 
 **config.yml**
 
@@ -20,7 +20,7 @@ production:
   dataset: "data.csv"
 ```
 
-To read values from this configuration file you call the `config::get` function, which returns a list containing all of the values for the currently active configuration:
+To read configuration values you call the `config::get` function, which returns a list containing all of the values for the currently active configuration:
 
 ``` r
 config <- config::get()
@@ -35,7 +35,7 @@ config::get("trials")
 config::get("dataset")
 ```
 
-The `get` function takes a `config` argument which determines which configuration to read values from. By default, `config` is read from the `R_CONFIG_NAME` environment variable. This variable is in turn typically set within a site-wide `Renviron` or `Rprofile` (see [R Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) for details on these files):
+The `get` function takes an optional `config` argument which determines which configuration to read values from (the "default" configuration is used if none is specified). The active configuration can also be specified globally via the `R_CONFIG_NAME` environment variable. This variable is typically set within a site-wide `Renviron` or `Rprofile` (see [R Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) for details on these files):
 
 ``` r
 # set the active configuration globally via Renviron.site or Rprofile.site
@@ -48,7 +48,7 @@ config::get("trials")
 Defaults and Inheritance
 ------------------------
 
-The `default` configuration must define all available values within the configuration file. Other configurations (e.g. `test` or `production`) automatically inherit all `default` values so need only define values specialized for that configuration. For example, in this configuration the `trials` value will be `5` when read from the `production` configuration:
+The `default` configuration must define all values available within the configuration file. Other configurations automatically inherit all `default` values so need only define values specialized for that configuration. For example, in this configuration the `production` configuration doesn't specify a value for `trials` so it will be read from the `default` configuration:
 
 **config.yml**
 
@@ -88,9 +88,17 @@ By default configuration data is read from a file named **config.yml** within th
 config <- config::get(file = "conf/config.yml")
 ```
 
-Sometimes it's useful to define local configuration values that are not deployed to other systems or not checked into version control. The **config** package will look for a file with a `.local.` extension prefix (e.g. **config.local.yml**) and use it's contents as an override of what's found in the main configuration file.
+Sometimes it's useful to define local configuration values that are not deployed to other systems or not checked into version control. The **config** package will look for a file with the `.local.` extension prefix (e.g. **config.local.yml**) and use values defined within it to override values of the same name found in the main configuration file.
 
-Dynamic Values
---------------
+R Code
+------
 
--   Executing R code
+You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables or R options. For example:
+
+``` yaml
+default:
+  cores: 2
+   
+production:
+  cores: !expr getOption("mc.cores")
+```
