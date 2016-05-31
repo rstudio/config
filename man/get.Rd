@@ -15,7 +15,9 @@ the value of the \code{R_CONFIG_NAME} environment variable
 ("default" if the variable does not exist).}
 
 \item{file}{Configuration file to read from (defaults to
-"config.yml").}
+"config.yml"). If the file isn't found at the location
+specified then parent directories are searched for a file
+of the same name.}
 }
 \value{
 The requested configuration value (or all values as

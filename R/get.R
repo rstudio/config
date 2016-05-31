@@ -9,7 +9,9 @@
 #'   the value of the \code{R_CONFIG_NAME} environment variable
 #'   ("default" if the variable does not exist).
 #' @param file Configuration file to read from (defaults to
-#'   "config.yml").
+#'   "config.yml"). If the file isn't found at the location
+#'   specified then parent directories are searched for a file
+#'   of the same name.
 #'
 #' @return The requested configuration value (or all values as
 #'   a list of \code{NULL} is passed for \code{value}).
@@ -18,6 +20,28 @@
 get <- function(value = NULL,
                 config = Sys.getenv("R_CONFIG_NAME", "default"),
                 file = "config.yml") {
+
+  # find the file (scan parent directories above if need be)
+  file <- normalizePath(file, mustWork = FALSE)
+  while (!file.exists(file)) {
+    # normalize path
+    file <- normalizePath(file, mustWork = FALSE)
+
+    # check if we are at the end of the search
+    file_dir <- dirname(file)
+    parent_dir <- dirname(file_dir)
+    if (file_dir == parent_dir)
+      break
+
+    # search one directory up
+    file <- file.path(parent_dir, basename(file))
+  }
+
+  # check for file existence
+  if (!file.exists(file)) {
+    stop("Config file ", basename(file), " not found in current working ",
+         "directory or parent directories")
+  }
 
   # load the yaml
   config_yaml <- yaml::yaml.load_file(file)
