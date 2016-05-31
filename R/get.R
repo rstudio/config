@@ -59,11 +59,6 @@ get <- function(value = NULL,
   if (is.null(default_config))
     stop("You must provide a default configuration.")
 
-  # validate that the requested value exists in the default config
-  # (all values must have a default)
-  if (!is.null(value) && is.null(default_config[[value]]))
-    stop("The value '", value, "' does not have a default value specified")
-
   # get the value and check for / validate inheritance
   do_get <- function(config, inherited = c()) {
 
