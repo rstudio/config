@@ -100,14 +100,18 @@ Sometimes it's useful to define local configuration values that are not deployed
 
 ## R Code 
 
-You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables or R options. For example:
+You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:
 
 ```yaml
 default:
   cores: 2
+  debug: true
+  server: "localhost:5555"
    
 production:
   cores: !expr getOption("mc.cores")
+  debug: !expr Sys.getenv("ENABLE_DEBUG") == "1"
+  server: !expr config::get("server", file = "/etc/server-config.yml")
 ```
 
 
