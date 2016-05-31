@@ -1,0 +1,11 @@
+default:
+  color: "red"
+  shape: "square"
+
+development:
+  inherits: test
+  shape: "triangle"
+
+test:
+  inherits: development
+  color: "blue"

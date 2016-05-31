@@ -23,17 +23,6 @@ test_that("configurations override default", {
   expect_identical(conf$shape, "circle")
 })
 
-test_that("configurations inherit from default", {
-  conf <- config::get(config = "development")
-  expect_identical(conf$color, "red")
-  expect_identical(conf$shape, "triangle")
-})
-
-test_that("configurations can inherit from other configurations", {
-  conf <- config::get(config = "test")
-  expect_identical(conf$shape, "triangle")
-})
-
 test_that("local config overrides base config", {
   conf <- config::get(file = "config/local/config.yml")
   expect_identical(conf$shape, "rectangle")

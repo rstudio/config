@@ -63,20 +63,34 @@ get <- function(value = NULL,
   if (!is.null(value) && is.null(default_config[[value]]))
     stop("The value '", value, "' does not have a default value specified")
 
-  # get the requested config
-  active_config <- config_yaml[[config]]
+  # get the value and check for / validate inheritance
+  do_get <- function(config, inherited = c()) {
 
-  # if it isn't the default configuration then see if it inherits from
-  # another configuration. if it does then resolve and merge with it,
-  # if not then merge with the default
-  if (!identical(config, "default")) {
-    inherits <- active_config$inherits
-    if (!is.null(inherits))
-      active_config <- merge_lists(config::get(config = inherits, file = file),
-                                   active_config)
-    else
-      active_config <- merge_lists(default_config, active_config)
+    # error if the requested config is already in our inheritance chain
+    if (config %in% inherited[-1])
+      stop("Configuration ", config, " inherits from itself!", call. = FALSE)
+
+    # get the requested config
+    active_config <- config_yaml[[config]]
+
+    # if it isn't the default configuration then see if it inherits from
+    # another configuration. if it does then resolve and merge with it,
+    # if not then merge with the default
+    if (!identical(config, "default")) {
+      inherits <- active_config$inherits
+      if (!is.null(inherits))
+        active_config <- merge_lists(do_get(inherits, c(inherits, inherited)),
+                                     active_config)
+      else
+        active_config <- merge_lists(default_config, active_config)
+    }
+
+    # return the config
+    active_config
   }
+
+  # get the requested config
+  active_config <- do_get(config)
 
   # return either the entire config or a requested value
   if (!is.null(value))
