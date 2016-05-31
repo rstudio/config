@@ -8,12 +8,14 @@ Authors@R: c(
 Imports:
     tools,
     yaml (>= 2.1.13)
+Suggests:
+    testthat,
+    knitr
 Description: Manage configuration values across multiple environments (e.g.
   development, test, production). Read values using a function that determines
   the current environment and returns the appropriate value.
 License: GPL-3
-Suggests:
-    testthat,
-    knitr
+URL: https://github.com/rstudio/config
+BugReports: https://github.com/rstudio/config/issues
 RoxygenNote: 5.0.1
 VignetteBuilder: knitr
