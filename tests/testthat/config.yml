@@ -13,3 +13,6 @@ production:
   color: "green"
   shape: "circle"
 
+dynamic:
+  color: !expr paste("orange")
+

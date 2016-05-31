@@ -56,3 +56,8 @@ test_that("active configuration can be changed via an environment variable", {
   Sys.setenv(R_CONFIG_NAME = "production")
   expect_identical(config::get("shape"), "circle")
 })
+
+test_that("R code is executed when reading configurations", {
+  expect_identical(config::get("color", config = "dynamic"), "orange")
+})
+
