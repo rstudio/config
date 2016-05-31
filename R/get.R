@@ -12,6 +12,8 @@
 #'   "config.yml"). If the file isn't found at the location
 #'   specified then parent directories are searched for a file
 #'   of the same name.
+#' @param use_parent \code{TRUE} to scan parent directories for
+#'   configuration files if the specified config file isn't found.
 #'
 #' @return The requested configuration value (or all values as
 #'   a list of \code{NULL} is passed for \code{value}).
@@ -19,28 +21,31 @@
 #' @export
 get <- function(value = NULL,
                 config = Sys.getenv("R_CONFIG_NAME", "default"),
-                file = "config.yml") {
+                file = "config.yml",
+                use_parent = TRUE) {
 
   # find the file (scan parent directories above if need be)
   file <- normalizePath(file, mustWork = FALSE)
-  while (!file.exists(file)) {
-    # normalize path
-    file <- normalizePath(file, mustWork = FALSE)
+  if (use_parent) {
+    while (!file.exists(file)) {
+      # normalize path
+      file <- normalizePath(file, mustWork = FALSE)
 
-    # check if we are at the end of the search
-    file_dir <- dirname(file)
-    parent_dir <- dirname(file_dir)
-    if (file_dir == parent_dir)
-      break
+      # check if we are at the end of the search
+      file_dir <- dirname(file)
+      parent_dir <- dirname(file_dir)
+      if (file_dir == parent_dir)
+        break
 
-    # search one directory up
-    file <- file.path(parent_dir, basename(file))
+      # search one directory up
+      file <- file.path(parent_dir, basename(file))
+    }
   }
 
   # check for file existence
   if (!file.exists(file)) {
     stop("Config file ", basename(file), " not found in current working ",
-         "directory or parent directories")
+         "directory", ifelse(use_parent, " or parent directories", ""))
   }
 
   # load the yaml

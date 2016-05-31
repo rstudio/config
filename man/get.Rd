@@ -5,7 +5,7 @@
 \title{Read configuration values}
 \usage{
 get(value = NULL, config = Sys.getenv("R_CONFIG_NAME", "default"),
-  file = "config.yml")
+  file = "config.yml", use_parent = TRUE)
 }
 \arguments{
 \item{value}{Name of value (\code{NULL} to read all values)}
@@ -18,6 +18,9 @@ the value of the \code{R_CONFIG_NAME} environment variable
 "config.yml"). If the file isn't found at the location
 specified then parent directories are searched for a file
 of the same name.}
+
+\item{use_parent}{\code{TRUE} to scan parent directories for
+configuration files if the specified config file isn't found.}
 }
 \value{
 The requested configuration value (or all values as
