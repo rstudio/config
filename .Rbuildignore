@@ -2,4 +2,7 @@
 ^\.Rproj\.user$
 config.yml
 README.*
+vignettes/*.yml
+vignettes/*.html
+
 
