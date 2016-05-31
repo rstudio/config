@@ -18,6 +18,9 @@
 #' @return The requested configuration value (or all values as
 #'   a list of \code{NULL} is passed for \code{value}).
 #'
+#' @details For additional details see the package website at
+#'  \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
+#'
 #' @export
 get <- function(value = NULL,
                 config = Sys.getenv("R_CONFIG_NAME", "default"),
