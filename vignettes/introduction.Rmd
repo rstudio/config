@@ -49,11 +49,11 @@ config::get("trials")
 config::get("dataset")
 ```
 
-The `get` function takes an optional `config` argument which determines which configuration(s) to read values from (the "default" configuration is used if none is specified). 
+The `get` function takes an optional `config` argument which determines which configuration to read values from (the "default" configuration is used if none is specified). 
 
 ## Configurations
 
-You can specify which configuration(s) are currently active by setting the `R_CONFIG_ACTIVE` environment variable (configuration names should include no spaces and the list can be comma or space delimited). The `R_CONFIG_ACTIVE` variable is typically set within a site-wide `Renviron` or `Rprofile` (see [R Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) for details on these files).
+You can specify which configuration is currently active by setting the `R_CONFIG_ACTIVE` environment variable. The `R_CONFIG_ACTIVE` variable is typically set within a site-wide `Renviron` or `Rprofile` (see [R Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) for details on these files).
 
 ```{r}
 # set the active configuration globally via Renviron.site or Rprofile.site
@@ -63,18 +63,11 @@ Sys.setenv(R_CONFIG_ACTIVE = "production")
 config::get("trials")
 ```
 
-You can check which configurations are currently active using the `config::active` function:
-
-```{r}
-config::active()
-```
-
 You can check whether a particular configuration is active using the `config::is_active` function:
 
 ```{r}
 config::is_active("production")
 ```
-
 
 ```{r, include=FALSE}
 Sys.setenv(R_CONFIG_ACTIVE = "default")

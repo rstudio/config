@@ -5,9 +5,7 @@
 #' single named value or all values as a list.
 #'
 #' @param value Name of value (\code{NULL} to read all values)
-#' @param config Character vector of configuraitons to read from;
-#'   priority is given to later elements in the vector (defaults to
-#'   \code{\link{active}}).
+#' @param config Configuration to read values from.
 #' @param file Configuration file to read from (defaults to
 #'   "config.yml"). If the file isn't found at the location
 #'   specified then parent directories are searched for a file
@@ -23,7 +21,7 @@
 #'
 #' @export
 get <- function(value = NULL,
-                config = config::active(),
+                config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
                 file = "config.yml",
                 use_parent = TRUE) {
 
@@ -82,12 +80,8 @@ get <- function(value = NULL,
     active_config
   }
 
-  # merge all of the active configurations in order (giving priority to
-  # later configrurations in the list since they logicaly qualify the
-  # prior configs, e.g. "production east")
-  active_config <- do_get("default")
-  for (i in 1:length(config))
-    active_config <- merge_lists(active_config, do_get(config[[i]]))
+  # merge the specified configuration with the default configuration
+  active_config <- merge_lists(default_config, do_get(config))
 
   # return either the entire config or a requested value
   if (!is.null(value))

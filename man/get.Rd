@@ -4,15 +4,13 @@
 \alias{get}
 \title{Read configuration values}
 \usage{
-get(value = NULL, config = config::active(), file = "config.yml",
-  use_parent = TRUE)
+get(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
+  file = "config.yml", use_parent = TRUE)
 }
 \arguments{
 \item{value}{Name of value (\code{NULL} to read all values)}
 
-\item{config}{Character vector of configuraitons to read from;
-priority is given to later elements in the vector (defaults to
-\code{\link{active}}).}
+\item{config}{Configuration to read values from.}
 
 \item{file}{Configuration file to read from (defaults to
 "config.yml"). If the file isn't found at the location
