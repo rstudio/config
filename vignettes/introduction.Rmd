@@ -116,10 +116,6 @@ If you don't want to ever scan parent directories for configuration files then y
 config <- config::get(file = "conf/config.yml", use_parent = FALSE)
 ```
 
-### Local Configs
-
-Sometimes it's useful to define local configuration values that are not deployed to other systems or not checked into version control. The **config** package will look for a file with the `.local.` extension prefix (e.g. **config.local.yml**) and use values defined within it to override values of the same name found in the main configuration file.
-
 ## R Code 
 
 You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:
