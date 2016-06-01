@@ -39,22 +39,29 @@ config::get("dataset")
 
 The `get` function takes an optional `config` argument which determines which configuration to read values from (the "default" configuration is used if none is specified).
 
-The active configuration should typically specified globally via the `R_CONFIG_NAME` environment variable rather than within the call to `get`:
+Configurations
+--------------
+
+You can specify which configuration is currently active by setting the `R_CONFIG_ACTIVE` environment variable. The `R_CONFIG_ACTIVE` variable is typically set within a site-wide `Renviron` or `Rprofile` (see [R Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) for details on these files).
 
 ``` r
 # set the active configuration globally via Renviron.site or Rprofile.site
-Sys.setenv(R_CONFIG_NAME = "production")
+Sys.setenv(R_CONFIG_ACTIVE = "production")
 
 # read configuration value (will return 30 from the "production" config)
 config::get("trials")
 ```
 
-Note that this variable is typically set within a site-wide `Renviron` or `Rprofile` (see [R Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) for details on these files).
+You can check whether a particular configuration is active using the `config::is_active` function:
+
+``` r
+config::is_active("production")
+```
 
 Defaults and Inheritance
 ------------------------
 
-The `default` configuration must define all values available within the configuration file. Other configurations automatically inherit all `default` values so need only define values specialized for that configuration. For example, in this configuration the `production` configuration doesn't specify a value for `trials` so it will be read from the `default` configuration:
+The `default` configuration provides a set of values to use when no named configuration is active. Other configurations automatically inherit all `default` values so need only define values specialized for that configuration. For example, in this configuration the `production` configuration doesn't specify a value for `trials` so it will be read from the `default` configuration:
 
 **config.yml**
 
@@ -67,7 +74,7 @@ production:
   dataset: "data.csv"
 ```
 
-Configurations can alternatively inherit from other configurations. For example, in this file the `production` configuration inherits from the `test` configuration:
+All configurations automatically inherit from the "default" configuration. Configurations can also inherit from one or more other named configurations. For example, in this file the `production` configuration inherits from the `test` configuration:
 
 **config.yml**
 
@@ -101,10 +108,6 @@ If you don't want to ever scan parent directories for configuration files then y
 ``` r
 config <- config::get(file = "conf/config.yml", use_parent = FALSE)
 ```
-
-### Local Configs
-
-Sometimes it's useful to define local configuration values that are not deployed to other systems or not checked into version control. The **config** package will look for a file with the `.local.` extension prefix (e.g. **config.local.yml**) and use values defined within it to override values of the same name found in the main configuration file.
 
 R Code
 ------

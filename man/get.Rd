@@ -4,7 +4,7 @@
 \alias{get}
 \title{Read configuration values}
 \usage{
-get(value = NULL, config = Sys.getenv("R_CONFIG_NAME", "default"),
+get(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
   file = "config.yml", use_parent = TRUE)
 }
 \arguments{

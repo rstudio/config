@@ -23,7 +23,7 @@
 #'
 #' @export
 get <- function(value = NULL,
-                config = Sys.getenv("R_CONFIG_NAME", "default"),
+                config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
                 file = "config.yml",
                 use_parent = TRUE) {
 
@@ -71,28 +71,25 @@ get <- function(value = NULL,
 
     # if it isn't the default configuration then see if it inherits from
     # another configuration. if it does then resolve and merge with it,
-    # if not then merge with the default
     if (!identical(config, "default")) {
-      inherits <- active_config$inherits
-      if (!is.null(inherits))
-        active_config <- merge_lists(do_get(inherits, c(inherits, inherited)),
+      for (cfg in active_config$inherits) {
+        active_config <- merge_lists(do_get(cfg, c(cfg, inherited)),
                                      active_config)
-      else
-        active_config <- merge_lists(default_config, active_config)
+      }
     }
 
     # return the config
     active_config
   }
 
-  # get the requested config
-  active_config <- do_get(config)
+  # merge the specified configuration with the default configuration
+  active_config <- merge_lists(default_config, do_get(config))
 
   # return either the entire config or a requested value
   if (!is.null(value))
     active_config[[value]]
   else
-    active_config
+    structure(active_config, config = config, file = file)
 }
 
 # recursively merge two lists (extracted from code used by rmarkdown
