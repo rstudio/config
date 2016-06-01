@@ -10,7 +10,9 @@ get(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
 \arguments{
 \item{value}{Name of value (\code{NULL} to read all values)}
 
-\item{config}{Configuration to read values from.}
+\item{config}{Name of configuration to read from. Defaults to
+the value of the \code{R_CONFIG_NAME} environment variable
+("default" if the variable does not exist).}
 
 \item{file}{Configuration file to read from (defaults to
 "config.yml"). If the file isn't found at the location
