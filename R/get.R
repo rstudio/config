@@ -5,9 +5,9 @@
 #' single named value or all values as a list.
 #'
 #' @param value Name of value (\code{NULL} to read all values)
-#' @param config Name of configuration to read from. Defaults to
-#'   the value of the \code{R_CONFIG_NAME} environment variable
-#'   ("default" if the variable does not exist).
+#' @param config Character vector of configuraitons to read from;
+#'   priority is given to later elements in the vector (defaults to
+#'   \code{\link{active}}).
 #' @param file Configuration file to read from (defaults to
 #'   "config.yml"). If the file isn't found at the location
 #'   specified then parent directories are searched for a file
@@ -23,7 +23,7 @@
 #'
 #' @export
 get <- function(value = NULL,
-                config = Sys.getenv("R_CONFIG_NAME", "default"),
+                config = config::active(),
                 file = "config.yml",
                 use_parent = TRUE) {
 
@@ -71,28 +71,29 @@ get <- function(value = NULL,
 
     # if it isn't the default configuration then see if it inherits from
     # another configuration. if it does then resolve and merge with it,
-    # if not then merge with the default
     if (!identical(config, "default")) {
-      inherits <- active_config$inherits
-      if (!is.null(inherits))
-        active_config <- merge_lists(do_get(inherits, c(inherits, inherited)),
+      for (cfg in active_config$inherits) {
+        active_config <- merge_lists(do_get(cfg, c(cfg, inherited)),
                                      active_config)
-      else
-        active_config <- merge_lists(default_config, active_config)
+      }
     }
 
     # return the config
     active_config
   }
 
-  # get the requested config
-  active_config <- do_get(config)
+  # merge all of the active configurations in order (giving priority to
+  # later configrurations in the list since they logicaly qualify the
+  # prior configs, e.g. "production east")
+  active_config <- do_get("default")
+  for (i in 1:length(config))
+    active_config <- merge_lists(active_config, do_get(config[[i]]))
 
   # return either the entire config or a requested value
   if (!is.null(value))
     active_config[[value]]
   else
-    active_config
+    structure(active_config, config = config, file = file)
 }
 
 # recursively merge two lists (extracted from code used by rmarkdown

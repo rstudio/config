@@ -16,3 +16,10 @@ test_that("configuration inheriting from itself is an error", {
                regexp = "inherits from itself")
 })
 
+test_that("configurations can inherit from multiple other configurations", {
+  config <- config::get(config = "west", file = "config-multiple.yml")
+  expect_identical(config$shape, "hexagon")
+  expect_identical(config$log, TRUE)
+})
+
+

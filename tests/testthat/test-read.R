@@ -29,15 +29,15 @@ test_that("configuration can be read from alternate file", {
 
 test_that("active configuration can be changed via an environment variable", {
   # restore previous state of environment after test
-  previous_config <- Sys.getenv("R_CONFIG_NAME", unset = NA);
+  previous_config <- Sys.getenv("R_CONFIG_ACTIVE", unset = NA);
   on.exit({
     if (!is.na(previous_config))
-      Sys.setenv(R_CONFIG_NAME = previous_config)
+      Sys.setenv(R_CONFIG_ACTIVE = previous_config)
     else
-      Sys.unsetenv("R_CONFIG_NAME")
+      Sys.unsetenv("R_CONFIG_ACTIVE")
   }, add = TRUE)
 
-  Sys.setenv(R_CONFIG_NAME = "production")
+  Sys.setenv(R_CONFIG_ACTIVE = "production")
   expect_identical(config::get("shape"), "circle")
 })
 

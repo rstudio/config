@@ -1,0 +1,17 @@
+default:
+  color: "red"
+  shape: "square"
+
+production:
+  color: "green"
+  shape: "triangle"
+
+east:
+  shape: "hexagon"
+
+debug:
+  log: true
+
+west:
+  inherits: [east, debug]
+
