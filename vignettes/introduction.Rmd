@@ -1,8 +1,6 @@
 ---
 title: "config package for R"
-output: 
-  rmarkdown::html_vignette:
-    readme: true
+output: rmarkdown::html_vignette
 vignette: >
   %\VignetteIndexEntry{config package for R}
   %\VignetteEngine{knitr::rmarkdown}
