@@ -2,4 +2,5 @@
 
 export(get)
 export(is_active)
+export(merge)
 import(yaml)
