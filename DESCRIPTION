@@ -6,7 +6,6 @@ Authors@R: c(
   person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
   person(family = "RStudio, Inc.", role = "cph"))
 Imports:
-    tools,
     yaml (>= 2.1.13)
 Suggests:
     testthat,
