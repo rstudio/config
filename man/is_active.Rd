@@ -26,4 +26,3 @@ environment variable directly (this is to so that tests remain
 valid if other means of specifing configurations are introduced
 in the future).
 }
-

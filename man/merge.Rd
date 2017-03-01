@@ -18,4 +18,3 @@ Configuration which includes the values from
 \description{
 Merge one configuration into another recursively.
 }
-

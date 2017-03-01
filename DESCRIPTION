@@ -16,5 +16,5 @@ Description: Manage configuration values across multiple environments (e.g.
 License: GPL-3
 URL: https://github.com/rstudio/config
 BugReports: https://github.com/rstudio/config/issues
-RoxygenNote: 5.0.1
+RoxygenNote: 6.0.1
 VignetteBuilder: knitr

@@ -34,4 +34,3 @@ single named value or all values as a list.
 For additional details see the package website at
  \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
 }
-
