@@ -85,6 +85,13 @@ get <- function(value = NULL,
   # merge the specified configuration with the default configuration
   active_config <- merge_lists(default_config, do_get(config))
 
+  # apply any filters
+  for (filter in .globals$filters) {
+    filtered_config <- filter(active_config)
+    if (!is.null(filtered_config))
+      active_config <- filtered_config
+  }
+
   # return either the entire config or a requested value
   if (!is.null(value))
     active_config[[value]]
