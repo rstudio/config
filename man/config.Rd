@@ -12,5 +12,5 @@ environment and returns the appropriate value.
 }
 \details{
 For additional details see the package website at
- \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
+\href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
 }

@@ -24,7 +24,7 @@ configuration files if the specified config file isn't found.}
 }
 \value{
 The requested configuration value (or all values as
-  a list of \code{NULL} is passed for \code{value}).
+a list of \code{NULL} is passed for \code{value}).
 }
 \description{
 Read from the currently active configuration, retreiving either a
@@ -32,5 +32,5 @@ single named value or all values as a list.
 }
 \details{
 For additional details see the package website at
- \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
+\href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
 }

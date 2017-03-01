@@ -13,7 +13,7 @@ merge(base_config, merge_config)
 }
 \value{
 Configuration which includes the values from
- \code{merge_config} merged into \code{base_config}.
+\code{merge_config} merged into \code{base_config}.
 }
 \description{
 Merge one configuration into another recursively.
