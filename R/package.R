@@ -8,13 +8,7 @@
 #'  \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
 #'
 #' @import yaml
-#' @import uuid
 #'
 #' @docType package
 #' @name config
 NULL
-
-
-# package level globals
-.globals <- new.env(parent = emptyenv())
-.globals$filters <- list()

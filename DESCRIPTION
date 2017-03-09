@@ -1,12 +1,12 @@
 Package: config
 Type: Package
 Title: Manage Environment Specific Configuration Values
-Version: 0.3
+Version: 0.2
 Authors@R: c(
   person("JJ", "Allaire", role = c("aut", "cre"), email = "jj@rstudio.com"),
   person(family = "RStudio, Inc.", role = "cph"))
 Imports:
-    yaml (>= 2.1.13), uuid
+    yaml (>= 2.1.13)
 Suggests:
     testthat,
     knitr

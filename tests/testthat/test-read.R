@@ -1,8 +1,7 @@
 context("read")
 
 test_that("configuration file can be loaded", {
-  config <- config::get()
-  expect_identical(config$color, "red")
+  config::get()
 })
 
 test_that("default configuration can be read", {
