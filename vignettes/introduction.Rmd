@@ -1,6 +1,8 @@
 ---
 title: "config package for R"
-output: rmarkdown::html_vignette
+output: 
+  rmarkdown::html_vignette:
+    readme: true
 vignette: >
   %\VignetteIndexEntry{config package for R}
   %\VignetteEngine{knitr::rmarkdown}
@@ -13,6 +15,12 @@ Sys.setenv(R_CONFIG_ACTIVE = "default")
 ```
 
 The **config** package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.
+
+You can install the **config** package from CRAN as follows:
+
+```{r}
+install.packages("config")
+```
 
 ## Usage
 

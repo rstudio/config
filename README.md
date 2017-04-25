@@ -3,6 +3,12 @@ config package for R
 
 The **config** package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.
 
+You can install the **config** package from CRAN as follows:
+
+``` r
+install.packages("config")
+```
+
 Usage
 -----
 
