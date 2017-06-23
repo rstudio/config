@@ -1,30 +1,30 @@
 context("read")
 
 test_that("configuration file can be loaded", {
-  config::get()
+  config::get_config()
 })
 
 test_that("default configuration can be read", {
-  color <- config::get("color")
+  color <- config::get_config("color")
   expect_identical(color, "red")
-  shape <- config::get("shape")
+  shape <- config::get_config("shape")
   expect_identical(shape, "square")
 })
 
 test_that("configuration can be accessed as a list", {
-  conf <- config::get()
+  conf <- config::get_config()
   expect_identical(conf$color, "red")
   expect_identical(conf$shape, "square")
 })
 
 test_that("configurations override default", {
-  conf <- config::get(config = "production")
+  conf <- config::get_config(config = "production")
   expect_identical(conf$color, "green")
   expect_identical(conf$shape, "circle")
 })
 
 test_that("configuration can be read from alternate file", {
-  expect_identical(config::get("color", file = "config/conf.yml"), "red")
+  expect_identical(config::get_config("color", file = "config/conf.yml"), "red")
 })
 
 test_that("active configuration can be changed via an environment variable", {
@@ -38,10 +38,10 @@ test_that("active configuration can be changed via an environment variable", {
   }, add = TRUE)
 
   Sys.setenv(R_CONFIG_ACTIVE = "production")
-  expect_identical(config::get("shape"), "circle")
+  expect_identical(config::get_config("shape"), "circle")
 })
 
 test_that("R code is executed when reading configurations", {
-  expect_identical(config::get("color", config = "dynamic"), "orange")
+  expect_identical(config::get_config("color", config = "dynamic"), "orange")
 })
 

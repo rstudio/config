@@ -18,7 +18,7 @@
 #' in the future).
 #'
 #' @export
-is_active <- function(config) {
+is_active_config <- function(config) {
   identical(config, Sys.getenv("R_CONFIG_ACTIVE", "default"))
 }
 

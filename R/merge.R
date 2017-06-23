@@ -11,7 +11,7 @@
 #'  \code{merge_config} merged into \code{base_config}.
 #'
 #' @export
-merge <- function(base_config, merge_config) {
+merge_config <- function(base_config, merge_config) {
   merge_lists(base_config, merge_config, recursive = TRUE)
 }
 

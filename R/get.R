@@ -22,7 +22,7 @@
 #'  \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
 #'
 #' @export
-get <- function(value = NULL,
+get_config <- function(value = NULL,
                 config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
                 file = "config.yml",
                 use_parent = TRUE) {
