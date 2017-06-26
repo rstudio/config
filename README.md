@@ -28,10 +28,10 @@ production:
   dataset: "data.csv"
 ```
 
-To read configuration values you call the `config::get` function, which returns a list containing all of the values for the currently active configuration:
+To read configuration values you call the `config::get_config` function, which returns a list containing all of the values for the currently active configuration:
 
 ``` r
-config <- config::get()
+config <- config::get_config()
 config$trials
 config$dataset
 ```
@@ -39,11 +39,11 @@ config$dataset
 You can also read a single value from the configuration as follows:
 
 ``` r
-config::get("trials")
-config::get("dataset")
+config::get_config("trials")
+config::get_config("dataset")
 ```
 
-The `get` function takes an optional `config` argument which determines which configuration to read values from (the "default" configuration is used if none is specified).
+The `get_config` function takes an optional `config` argument which determines which configuration to read values from (the "default" configuration is used if none is specified).
 
 Configurations
 --------------
@@ -55,13 +55,13 @@ You can specify which configuration is currently active by setting the `R_CONFIG
 Sys.setenv(R_CONFIG_ACTIVE = "production")
 
 # read configuration value (will return 30 from the "production" config)
-config::get("trials")
+config::get_config("trials")
 ```
 
-You can check whether a particular configuration is active using the `config::is_active` function:
+You can check whether a particular configuration is active using the `config::is_active_config` function:
 
 ``` r
-config::is_active("production")
+config::is_active_config("production")
 ```
 
 Defaults and Inheritance
@@ -103,16 +103,16 @@ Configuration Files
 
 By default configuration data is read from a file named **config.yml** within the current working directory (or parent directories if no config file is found in the initially specified directory).
 
-You can use the `file` argument of `config::get` to read from an alternate location. For example:
+You can use the `file` argument of `config::get_config` to read from an alternate location. For example:
 
 ``` r
-config <- config::get(file = "conf/config.yml")
+config <- config::get_config(file = "conf/config.yml")
 ```
 
 If you don't want to ever scan parent directories for configuration files then you can specify `use_parent = FALSE`:
 
 ``` r
-config <- config::get(file = "conf/config.yml", use_parent = FALSE)
+config <- config::get_config(file = "conf/config.yml", use_parent = FALSE)
 ```
 
 R Code
@@ -129,5 +129,5 @@ default:
 production:
   cores: !expr getOption("mc.cores")
   debug: !expr Sys.getenv("ENABLE_DEBUG") == "1"
-  server: !expr config::get("server", file = "/etc/server-config.yml")
+  server: !expr config::get_config("server", file = "/etc/server-config.yml")
 ```
