@@ -35,7 +35,7 @@ get <- function(value = NULL,
       file <- normalizePath(file, mustWork = FALSE)
 
       # check if we are at the end of the search
-      file_dir <- dirname(file)
+      file_dir <- normalizePath(dirname(file))
       parent_dir <- dirname(file_dir)
       if (file_dir == parent_dir)
         break
