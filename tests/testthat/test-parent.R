@@ -18,4 +18,9 @@ test_that("search for config file properly terminates", {
                regexp = "not found in current working")
 })
 
-
+test_that("search for config file works without directory", {
+  old <- setwd("parent")
+  on.exit(setwd(old))
+  expect_identical(config::get("color", file = "config-multiple.yml"),
+                   "red")
+})
