@@ -28,7 +28,7 @@ get_config <- function(value = NULL,
                 use_parent = TRUE) {
 
   # find the file (scan parent directories above if need be)
-  file <- normalizePath(file, mustWork = FALSE)
+  file <- normalizePath( file.path( getwd(), file ), mustWork = FALSE)
   if (use_parent) {
     while (!file.exists(file)) {
       # normalize path
