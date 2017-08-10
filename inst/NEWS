@@ -1,8 +1,13 @@
+config 0.5.1
+--------------------------------------------------------------------------------
+
+- Fixed search in parent dir under linux.
+
+
 config 0.5
 --------------------------------------------------------------------------------
 
 - Changed all functions name to prevent clash with base packages.
-
 
 
 config 0.2
