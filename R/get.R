@@ -24,7 +24,7 @@
 #' @export
 get <- function(value = NULL,
                 config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
-                file = "config.yml",
+                file = Sys.getenv("R_CONFIG_FILE", "config.yml"),
                 use_parent = TRUE) {
 
   # find the file (scan parent directories above if need be)
