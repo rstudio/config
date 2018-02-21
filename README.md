@@ -1,3 +1,5 @@
+[![Build Status](https://travis-ci.org/rstudio/config.svg?branch=master)](https://travis-ci.org/rstudio/config)
+
 config package for R
 ================
 
