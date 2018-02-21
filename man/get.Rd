@@ -5,7 +5,7 @@
 \title{Read configuration values}
 \usage{
 get(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
-  file = "config.yml", use_parent = TRUE)
+  file = Sys.getenv("R_CONFIG_FILE", "config.yml"), use_parent = TRUE)
 }
 \arguments{
 \item{value}{Name of value (\code{NULL} to read all values)}

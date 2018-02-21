@@ -52,7 +52,9 @@ get <- function(value = NULL,
   }
 
   # load the yaml
-  config_yaml <- yaml::yaml.load_file(file)
+  config_yaml <- yaml::yaml.load_file(
+    file, handlers = list(expr = function(x) eval(parse(text = x)))
+  )
 
   # get the default config (required)
   default_config <- config_yaml[["default"]]
