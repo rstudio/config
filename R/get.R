@@ -31,16 +31,16 @@ get <- function(value = NULL,
   file <- normalizePath(file, mustWork = FALSE)
   if (use_parent) {
     while (!file.exists(file)) {
+
       # normalize path
       file <- normalizePath(file, mustWork = FALSE)
 
       # check if we are at the end of the search
-      file_dir <- normalizePath(dirname(file))
-      parent_dir <- dirname(file_dir)
-      if (file_dir == parent_dir)
+      if (dirname(file) == dirname(dirname(file)))
         break
 
       # search one directory up
+      parent_dir <- dirname(normalizePath(dirname(file), mustWork = FALSE))
       file <- file.path(parent_dir, basename(file))
     }
   }
