@@ -3,5 +3,5 @@
 README\.md
 README_files
 vignettes/.*html
-
+^issues$
 ^\.travis\.yml$
