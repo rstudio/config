@@ -47,6 +47,9 @@ config::get("dataset")
 
 The `get` function takes an optional `config` argument which determines which configuration to read values from (the "default" configuration is used if none is specified).
 
+Note that we purposely don't call `library(config)` but rather qualify calls with the package name (e.g. `config::get()`). This is to avoid conflicts between config functions and functions in the base R package (specifically, `get` and `merge`).
+
+
 Configurations
 --------------
 
