@@ -6,7 +6,7 @@
 #'
 #' @param value Name of value (\code{NULL} to read all values)
 #' @param config Name of configuration to read from. Defaults to
-#'   the value of the \code{R_CONFIG_NAME} environment variable
+#'   the value of the \code{R_CONFIG_ACTIVE} environment variable
 #'   ("default" if the variable does not exist).
 #' @param file Configuration file to read from (defaults to
 #'   "config.yml"). If the file isn't found at the location
