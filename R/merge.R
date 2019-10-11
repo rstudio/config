@@ -27,6 +27,8 @@ merge_lists <- function (base_list, overlay_list, recursive = TRUE) {
     base_list
   else {
     merged_list <- base_list
+    
+    # merge named lists
     for (name in names(overlay_list)) {
       base <- base_list[[name]]
       overlay <- overlay_list[[name]]
@@ -37,6 +39,11 @@ merge_lists <- function (base_list, overlay_list, recursive = TRUE) {
         merged_list <- append(merged_list,
                               overlay_list[which(names(overlay_list) %in% name)])
       }
+    }
+    
+    # merge unnamed lists
+    if (is.null(names(base_list)) && is.null(names(overlay_list))) {
+      merged_list <- overlay_list
     }
     merged_list
   }
