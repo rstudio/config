@@ -53,7 +53,7 @@ get <- function(value = NULL,
 
   # load the yaml
   config_yaml <- yaml::yaml.load_file(
-    file, eval.expr = TRUE
+    file, eval.expr = FALSE, handlers = list(expr = function(x) parse(text = x))
   )
 
   # get the default config (required)
@@ -86,6 +86,20 @@ get <- function(value = NULL,
 
   # merge the specified configuration with the default configuration
   active_config <- merge_lists(default_config, do_get(config))
+
+  # check whether any expressions need to be evaluated recursively
+
+  eval_recursively <- function(x){
+    is_expr <- vapply(x, is.expression, logical(1))
+    x[is_expr] <- lapply(x[is_expr], eval, envir = baseenv())
+
+    is_list <- vapply(x, is.list, logical(1))
+    x[is_list] <- lapply(x[is_list], eval_recursively)
+
+    x
+  }
+
+  active_config <- eval_recursively(active_config)
 
   # return either the entire config or a requested value
   if (!is.null(value))

@@ -15,4 +15,9 @@ production:
 
 dynamic:
   color: !expr paste("orange")
+  nested:
+    shape: !expr paste("circle")
+    taste: !expr paste("sweet")
 
+error:
+  color: !expr stop("this should not be evaluated")
