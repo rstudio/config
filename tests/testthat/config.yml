@@ -16,3 +16,5 @@ production:
 dynamic:
   color: !expr paste("orange")
 
+error:
+  color: !expr stop("this should not be evaluated")

@@ -53,7 +53,7 @@ get <- function(value = NULL,
 
   # load the yaml
   config_yaml <- yaml::yaml.load_file(
-    file, eval.expr = TRUE
+    file, eval.expr = FALSE, handlers = list(expr = function(x) paste("!expr", x))
   )
 
   # get the default config (required)
@@ -86,6 +86,21 @@ get <- function(value = NULL,
 
   # merge the specified configuration with the default configuration
   active_config <- merge_lists(default_config, do_get(config))
+
+  active_config <-
+    rapply(
+      active_config,
+      how = "replace",
+      classes = "character",
+      f = function(x) {
+        if(length(x) == 1 && grepl("^!expr ", x)) {
+          eval(parse(text = sub("^!expr ", "", x)))
+        } else {
+          x
+        }
+      }
+    )
+
 
   # return either the entire config or a requested value
   if (!is.null(value))
