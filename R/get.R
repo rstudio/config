@@ -87,9 +87,19 @@ get <- function(value = NULL,
   # merge the specified configuration with the default configuration
   active_config <- merge_lists(default_config, do_get(config))
 
-  # check whether any expressions need to be evaluated
-  is_expr <- vapply(active_config, is.expression, logical(1))
-  active_config[is_expr] <- lapply(active_config[is_expr], eval, envir = baseenv())
+  # check whether any expressions need to be evaluated recursively
+
+  eval_recursively <- function(x){
+    is_expr <- vapply(x, is.expression, logical(1))
+    x[is_expr] <- lapply(x[is_expr], eval, envir = baseenv())
+
+    is_list <- vapply(x, is.list, logical(1))
+    x[is_list] <- lapply(x[is_list], eval_recursively)
+
+    x
+  }
+
+  active_config <- eval_recursively(active_config)
 
   # return either the entire config or a requested value
   if (!is.null(value))
