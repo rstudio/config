@@ -89,10 +89,7 @@ get <- function(value = NULL,
 
   # check whether any expressions need to be evaluated
   is_expr <- vapply(active_config, is.expression, logical(1))
-  if (any(is_expr)) {
-    active_config[is_expr] <- lapply(active_config[is_expr], eval, envir = baseenv())
-  }
-
+  active_config[is_expr] <- lapply(active_config[is_expr], eval, envir = baseenv())
 
   # return either the entire config or a requested value
   if (!is.null(value))
