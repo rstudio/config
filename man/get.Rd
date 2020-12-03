@@ -2,10 +2,14 @@
 % Please edit documentation in R/get.R
 \name{get}
 \alias{get}
-\title{Read configuration values}
+\title{Read configuration values.}
 \usage{
-get(value = NULL, config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
-  file = Sys.getenv("R_CONFIG_FILE", "config.yml"), use_parent = TRUE)
+get(
+  value = NULL,
+  config = Sys.getenv("R_CONFIG_ACTIVE", "default"),
+  file = Sys.getenv("R_CONFIG_FILE", "config.yml"),
+  use_parent = TRUE
+)
 }
 \arguments{
 \item{value}{Name of value (\code{NULL} to read all values)}
@@ -15,7 +19,7 @@ the value of the \code{R_CONFIG_ACTIVE} environment variable
 ("default" if the variable does not exist).}
 
 \item{file}{Configuration file to read from (defaults to
-"config.yml"). If the file isn't found at the location
+\code{"config.yml"}). If the file isn't found at the location
 specified then parent directories are searched for a file
 of the same name.}
 
@@ -25,6 +29,8 @@ configuration files if the specified config file isn't found.}
 \value{
 The requested configuration value (or all values as
 a list of \code{NULL} is passed for \code{value}).
+
+A list, or vector, corresponding to the contents of the config file.
 }
 \description{
 Read from the currently active configuration, retreiving either a
@@ -33,4 +39,7 @@ single named value or all values as a list.
 \details{
 For additional details see the package website at
 \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
+}
+\seealso{
+\code{\link[=is_active]{is_active()}}, \code{\link[=merge]{merge()}}
 }

@@ -2,7 +2,7 @@
 % Please edit documentation in R/merge.R
 \name{merge}
 \alias{merge}
-\title{Merge two configurations}
+\title{Merge two configurations.}
 \usage{
 merge(base_config, merge_config)
 }
@@ -17,4 +17,7 @@ Configuration which includes the values from
 }
 \description{
 Merge one configuration into another recursively.
+}
+\seealso{
+\code{\link[=get]{get()}}
 }

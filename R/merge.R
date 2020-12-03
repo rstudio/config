@@ -1,14 +1,17 @@
 
 
-#' Merge two configurations
+#' Merge two configurations.
 #'
 #' Merge one configuration into another recursively.
 #'
 #' @param base_config Configuration to merge values into
+#'
 #' @param merge_config Configuration to merge values from
 #'
 #' @return Configuration which includes the values from
-#'  \code{merge_config} merged into \code{base_config}.
+#'  `merge_config` merged into `base_config`.
+#'
+#' @seealso [get()]
 #'
 #' @export
 merge <- function(base_config, merge_config) {

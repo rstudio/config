@@ -3,14 +3,15 @@
 \docType{package}
 \name{config}
 \alias{config}
-\alias{config-package}
-\title{Manage Environment Specific Configuration Values}
+\title{Manage Environment Specific Configuration Values.}
 \description{
 Manage configuration values across multiple environments (e.g. development,
 test, production). Read values using a function that determines the current
 environment and returns the appropriate value.
 }
 \details{
+The main function is \code{\link[=get]{get()}}
+
 For additional details see the package website at
 \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
 }
