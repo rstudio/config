@@ -6,10 +6,12 @@ config <img src='man/figures/logo.svg' align="right" height="139" />
 
 <!-- badges: start -->
 
-[![Build
-Status](https://travis-ci.org/rstudio/config.svg?branch=master)](https://travis-ci.org/rstudio/config)
 [![CRAN
 status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org/package=config)
+[![R build
+status](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
+[![Build Status
+Travis](https://travis-ci.org/rstudio/config.svg?branch=master)](https://travis-ci.org/rstudio/config)
 <!-- badges: end -->
 
 The **config** package makes it easy to manage environment specific
