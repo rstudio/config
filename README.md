@@ -1,8 +1,8 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-config package for R
-====================
+config <img src='man/figures/logo.svg' align="right" height="139" />
+====================================================================
 
 <!-- badges: start -->
 

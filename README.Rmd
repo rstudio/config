@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-# config package for R
+# config <img src='man/figures/logo.svg' align="right" height="139" />
 
 <!-- badges: start -->
 [![Build Status](https://travis-ci.org/rstudio/config.svg?branch=master)](https://travis-ci.org/rstudio/config)
