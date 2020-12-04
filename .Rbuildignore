@@ -6,3 +6,6 @@ vignettes/.*html
 ^issues$
 ^\.travis\.yml$
 ^README\.Rmd$
+^_pkgdown\.yml$
+^docs$
+^pkgdown$
