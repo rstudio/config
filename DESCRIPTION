@@ -3,9 +3,9 @@ Type: Package
 Title: Manage Environment Specific Configuration Values
 Version: 0.3.0.9000
 Authors@R: c(
-  person("JJ", "Allaire", role = c("aut", "aut"), email = "jj@rstudio.com"),
+  person("JJ", "Allaire", role = c("aut"), email = "jj@rstudio.com"),
   person("Andrie", "de Vries", role = "cre", email = "apdevries@gmail.com"),
-  person(family = "RStudio, PBC.", role = "cph"))
+  person("RStudio", role = c("cph", "fnd")))
 Imports:
     yaml (>= 2.1.19)
 Suggests:
