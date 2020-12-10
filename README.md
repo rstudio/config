@@ -1,8 +1,7 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 
-config <img src='man/figures/logo.svg' align="right" height="139" />
-====================================================================
+# config <img src='man/figures/logo.svg' align="right" height="139" />
 
 <!-- badges: start -->
 
@@ -10,8 +9,8 @@ config <img src='man/figures/logo.svg' align="right" height="139" />
 status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org/package=config)
 [![R build
 status](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
-[![Build Status
-Travis](https://travis-ci.org/rstudio/config.svg?branch=master)](https://travis-ci.org/rstudio/config)
+[![Codecov test
+coverage](https://codecov.io/gh/rstudio/config/branch/master/graph/badge.svg)](https://codecov.io/gh/rstudio/config?branch=master)
 <!-- badges: end -->
 
 The **config** package makes it easy to manage environment specific
@@ -22,8 +21,7 @@ You can install the **config** package from CRAN as follows:
 
     install.packages("config")
 
-Usage
------
+## Usage
 
 Configurations are defined using a
 [YAML](http://www.yaml.org/about.html) text file and are read by default
@@ -66,8 +64,7 @@ calls with the package name (e.g. `config::get()`). This is to avoid
 conflicts between config functions and functions in the base R package
 (specifically, `get` and `merge`).
 
-Configurations
---------------
+## Configurations
 
 You can specify which configuration is currently active by setting the
 `R_CONFIG_ACTIVE` environment variable. The `R_CONFIG_ACTIVE` variable
@@ -86,8 +83,7 @@ You can check whether a particular configuration is active using the
 
     config::is_active("production")
 
-Defaults and Inheritance
-------------------------
+## Defaults and Inheritance
 
 The `default` configuration provides a set of values to use when no
 named configuration is active. Other configurations automatically
@@ -124,8 +120,7 @@ configuration inherits from the `test` configuration:
       inherits: test
       dataset: "data.csv"
 
-Configuration Files
--------------------
+## Configuration Files
 
 By default configuration data is read from a file named **config.yml**
 within the current working directory (or parent directories if no config
@@ -141,8 +136,7 @@ files then you can specify `use_parent = FALSE`:
 
     config <- config::get(file = "conf/config.yml", use_parent = FALSE)
 
-R Code
-------
+## R Code
 
 You can execute R code within configuration files by prefacing values
 with `!expr`. This could be useful in the case where you want to base

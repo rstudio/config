@@ -10,7 +10,8 @@ Imports:
     yaml (>= 2.1.19)
 Suggests:
     testthat,
-    knitr
+    knitr,
+    covr
 Description: Manage configuration values across multiple environments (e.g.
   development, test, production). Read values using a function that determines
   the current environment and returns the appropriate value.

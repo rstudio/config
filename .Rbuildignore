@@ -10,3 +10,4 @@ vignettes/.*html
 ^docs$
 ^pkgdown$
 ^\.github$
+^codecov\.yml$
