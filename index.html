@@ -40,7 +40,7 @@
       </button>
       <span class="navbar-brand">
         <a class="navbar-link" href="index.html">config</a>
-        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.0.9000</span>
+        <span class="version label label-default" data-toggle="tooltip" data-placement="bottom" title="Released version">0.3.1</span>
       </span>
     </div>
 
@@ -48,7 +48,7 @@
       <ul class="nav navbar-nav">
 <li>
   <a href="index.html">
-    <span class="fas fa fas fa-home fa-lg"></span>
+    <span class="fas fa-home fa-lg"></span>
      
   </a>
 </li>
@@ -74,7 +74,7 @@
 <ul class="nav navbar-nav navbar-right">
 <li>
   <a href="https://github.com/rstudio/config/">
-    <span class="fab fa fab fa-github fa-lg"></span>
+    <span class="fab fa-github fa-lg"></span>
      
   </a>
 </li>
@@ -102,7 +102,7 @@
 <div id="usage" class="section level2">
 <h2 class="hasAnchor">
 <a href="#usage" class="anchor"></a>Usage</h2>
-<p>Configurations are defined using a <a href="http://www.yaml.org/about.html">YAML</a> text file and are read by default from a file named <strong>config.yml</strong> in the current working directory (or parent directories if no config file is found in the initially specified directory).</p>
+<p>Configurations are defined using a <a href="https://yaml.org/about.html">YAML</a> text file and are read by default from a file named <strong>config.yml</strong> in the current working directory (or parent directories if no config file is found in the initially specified directory).</p>
 <p>Configuration files include default values as well as values for arbitrary other named configurations, for example:</p>
 <p><strong>config.yml</strong></p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb2-1"><a href="#cb2-1"></a>default<span class="op">:</span></span>
@@ -120,7 +120,6 @@
 <div class="sourceCode" id="cb4"><pre class="sourceCode R"><code class="sourceCode r"><span id="cb4-1"><a href="#cb4-1"></a>config<span class="op">::</span><span class="kw">get</span>(<span class="st">"trials"</span>)</span>
 <span id="cb4-2"><a href="#cb4-2"></a>config<span class="op">::</span><span class="kw">get</span>(<span class="st">"dataset"</span>)</span></code></pre></div>
 <p>The <code>get</code> function takes an optional <code>config</code> argument which determines which configuration to read values from (the “default” configuration is used if none is specified).</p>
-<p>Note that we purposely don’t call <code><a href="https://github.com/rstudio/config">library(config)</a></code> but rather qualify calls with the package name (e.g. <code><a href="reference/get.html">config::get()</a></code>). This is to avoid conflicts between config functions and functions in the base R package (specifically, <code>get</code> and <code>merge</code>).</p>
 </div>
 <div id="configurations" class="section level2">
 <h2 class="hasAnchor">
