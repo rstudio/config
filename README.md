@@ -23,11 +23,10 @@ You can install the **config** package from CRAN as follows:
 
 ## Usage
 
-Configurations are defined using a
-[YAML](http://www.yaml.org/about.html) text file and are read by default
-from a file named **config.yml** in the current working directory (or
-parent directories if no config file is found in the initially specified
-directory).
+Configurations are defined using a [YAML](https://yaml.org/about.html)
+text file and are read by default from a file named **config.yml** in
+the current working directory (or parent directories if no config file
+is found in the initially specified directory).
 
 Configuration files include default values as well as values for
 arbitrary other named configurations, for example:
@@ -58,11 +57,6 @@ You can also read a single value from the configuration as follows:
 The `get` function takes an optional `config` argument which determines
 which configuration to read values from (the “default” configuration is
 used if none is specified).
-
-Note that we purposely don’t call `library(config)` but rather qualify
-calls with the package name (e.g. `config::get()`). This is to avoid
-conflicts between config functions and functions in the base R package
-(specifically, `get` and `merge`).
 
 ## Configurations
 
