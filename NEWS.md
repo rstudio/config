@@ -1,4 +1,4 @@
-# config 0.3.0.9000
+# config 0.3.1 (2020-12-15)
 
 * Bug fix: evaluate expressions only for the active config (not all configs). In
 previous versions of `config`, all expressions in the `yml` file were evaluated,
