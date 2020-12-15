@@ -33,7 +33,7 @@ a list of \code{NULL} is passed for \code{value}).
 A list, or vector, corresponding to the contents of the config file.
 }
 \description{
-Read from the currently active configuration, retreiving either a
+Read from the currently active configuration, retrieving either a
 single named value or all values as a list.
 }
 \details{

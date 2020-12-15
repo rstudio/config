@@ -1,7 +1,7 @@
 
 #' Read configuration values.
 #'
-#' Read from the currently active configuration, retreiving either a
+#' Read from the currently active configuration, retrieving either a
 #' single named value or all values as a list.
 #'
 #' For additional details see the package website at
