@@ -1,7 +1,7 @@
 ## Test environments
 
 * local R installation, R 4.0.3
-* ubuntu 16.04 (on travis-ci), R-devel, R-release and R-oldrel
+* ubuntu 16.04 (on Github Actions), R-devel, R-release and R-oldrel
 * win-builder (devel)
 
 ## R CMD check results
