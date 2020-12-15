@@ -139,29 +139,29 @@
 <a href="#config-0309000" class="anchor"></a>config 0.3.0.9000<small> Unreleased </small>
 </h1>
 <ul>
-<li>Only evaluate expressions for the active config (not all configs)</li>
+<li>Bug fix: evaluate expressions only for the active config (not all configs). In previous versions of <code>config</code>, all expressions in the <code>yml</code> file were evaluated, regardless whether these expressions were used in the active config. In this version, the appropriate config is selected, and only then are the expressions evaluated. Fixes <a href='https://github.com/rstudio/config/issues/20'>#20</a></li>
 </ul>
 </div>
-    <div id="config-030" class="section level1">
+    <div id="config-030-2018-03-27" class="section level1">
 <h1 class="page-header" data-toc-text="0.3.0">
-<a href="#config-030" class="anchor"></a>config 0.3.0<small> Unreleased </small>
+<a href="#config-030-2018-03-27" class="anchor"></a>config 0.3.0 (2018-03-27)<small> Unreleased </small>
 </h1>
 <ul>
-<li>Improved handling of expressions</li>
-<li>Bug fixes</li>
+<li><p>Improved handling of expressions</p></li>
+<li><p>Bug fixes</p></li>
 </ul>
 </div>
-    <div id="config-020" class="section level1">
+    <div id="config-020-2016-08-02" class="section level1">
 <h1 class="page-header" data-toc-text="0.2.0">
-<a href="#config-020" class="anchor"></a>config 0.2.0<small> Unreleased </small>
+<a href="#config-020-2016-08-02" class="anchor"></a>config 0.2.0 (2016-08-02)<small> Unreleased </small>
 </h1>
 <ul>
 <li>Add <code>merge</code> function to merge one configuration into another.</li>
 </ul>
 </div>
-    <div id="config-010" class="section level1">
+    <div id="config-010-2016-06-08" class="section level1">
 <h1 class="page-header" data-toc-text="0.1.0">
-<a href="#config-010" class="anchor"></a>config 0.1.0<small> 2016-06-08 </small>
+<a href="#config-010-2016-06-08" class="anchor"></a>config 0.1.0 (2016-06-08)<small> 2016-06-08 </small>
 </h1>
 <p>Initial release to CRAN</p>
 </div>
@@ -178,7 +178,7 @@
 
       <footer>
       <div class="copyright">
-  <p>Developed by JJ Allaire, Andrie de Vries.</p>
+  <p>Developed by JJ Allaire, Andrie de Vries, <a href='https://www.rstudio.com'><img src='https://www.tidyverse.org/rstudio-logo.svg' alt='RStudio' height='24' /></a>.</p>
 </div>
 
 <div class="pkgdown">
