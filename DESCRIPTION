@@ -11,6 +11,7 @@ Imports:
 Suggests:
     testthat,
     knitr,
+    rmarkdown,
     covr,
     spelling
 Description: Manage configuration values across multiple environments (e.g.
