@@ -11,3 +11,4 @@ vignettes/.*html
 ^pkgdown$
 ^\.github$
 ^codecov\.yml$
+^revdep$
