@@ -1,5 +1,5 @@
-release_date: ???
-rel_release_date: ???
-my_news_url: ???
-release_version: ???
-release_details: ???
+release_date: 2020-12-31
+rel_release_date: two weeks
+my_news_url: https://rstudio.github.io/config/news/index.html
+release_version: 0.3.1
+release_details: "* This release fixes a single bug to evaluate expressions in the yaml file only when actually in the active config"
