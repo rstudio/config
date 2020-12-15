@@ -12,3 +12,4 @@ vignettes/.*html
 ^\.github$
 ^codecov\.yml$
 ^revdep$
+^cran-comments\.md$
