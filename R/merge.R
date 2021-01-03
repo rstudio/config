@@ -41,7 +41,48 @@ merge_lists <- function (base_list, overlay_list, recursive = TRUE) {
                               overlay_list[which(names(overlay_list) %in% name)])
       }
     }
+    
+    # Handle merging of structural changes or unnamed lists
+    merged_list <- if (all(is.null(names(overlay_list)))) {
+      # This characteristic implies that additional processing steps need to
+      # take place
+      if (!all(is.null(names(merged_list)))) {
+        # This implies a structural change from named list to unnamed list and
+        # thus the new content should be returned all together
+        overlay_list
+      } else {
+        # This is implies no structural break, but an unnamed list needs to be
+        # merged with another unnamed list. As this is a non-trivial task with
+        # lots of possible solutions, the current merging mechanism is a
+        # simple solution that expects the first element of the sublists to
+        # act as a unique identifier
+
+        # Merge lists but with 'overlay_list' taking the lead
+        merged_list <- append(overlay_list, merged_list)
+        # Extract UIDs
+        uids <- extract_uids(merged_list)
+        # Drop duplicated UIDs and sort based on UIDs
+        merged_list[!duplicated(uids)][order(unique(uids))]
+      }
+    } else {
+      # Regular result if not special merging needed to take place
+      merged_list
+    }
+    
     merged_list
   }
 }
 
+# Helper function for merging unnamed lists
+extract_uids <- function(x) {
+  index <- lapply(x, function(.x) {
+    uid <- .x[[1]]
+    if (!is.list(uid)) {
+      uid
+    } else {
+      extract_uids(uid[[1]])
+    }
+  })
+
+  unlist(index)
+}
