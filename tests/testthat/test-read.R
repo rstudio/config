@@ -44,6 +44,10 @@ test_that("active configuration can be changed via an environment variable", {
 test_that("R code is executed when reading configurations", {
   expect_identical(config::get("color", config = "dynamic"), "orange")
   expect_error(config::get("color", config = "error"))
+
+  use_color <- "orange"
+  get_color <- config::get("color", config = "parentenv")
+  expect_identical(get_color, use_color)
 })
 
 test_that("expressions are evaluated recursively", {

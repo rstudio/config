@@ -98,7 +98,7 @@ get <- function(value = NULL,
 
   eval_recursively <- function(x){
     is_expr <- vapply(x, is.expression, logical(1))
-    x[is_expr] <- lapply(x[is_expr], eval, envir = baseenv())
+    x[is_expr] <- lapply(x[is_expr], eval, envir = parent.frame(n = 2))
 
     is_list <- vapply(x, is.list, logical(1))
     x[is_list] <- lapply(x[is_list], eval_recursively)

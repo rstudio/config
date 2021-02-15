@@ -21,3 +21,6 @@ dynamic:
 
 error:
   color: !expr stop("this should not be evaluated")
+
+parentenv:
+  color: !expr paste(use_color)
