@@ -19,5 +19,8 @@ dynamic:
     shape: !expr paste("circle")
     taste: !expr paste("sweet")
 
+assigned:
+  new_color: !expr paste(color, "orange", sep = "-")
+
 error:
   color: !expr stop("this should not be evaluated")
