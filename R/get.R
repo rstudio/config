@@ -96,13 +96,12 @@ get <- function(value = NULL,
 
   # check whether any expressions need to be evaluated recursively
 
-  eval_recursively <- function(x){
+  eval_recursively <- function(x) {
     is_expr <- vapply(x, is.expression, logical(1))
-    x[is_expr] <- lapply(x[is_expr], eval, envir = baseenv())
-
+    new_env <- list2env(x[!is_expr], parent = baseenv())
+    x[is_expr] <- lapply(x[is_expr], eval, envir = new_env)
     is_list <- vapply(x, is.list, logical(1))
     x[is_list] <- lapply(x[is_list], eval_recursively)
-
     x
   }
 

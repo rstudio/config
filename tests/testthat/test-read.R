@@ -53,3 +53,8 @@ test_that("expressions are evaluated recursively", {
   )
 })
 
+test_that("expressions can use previously assigned parameters", {
+  expect_identical(
+    config::get("new_color", config = "assigned"), "red-orange")
+})
+
