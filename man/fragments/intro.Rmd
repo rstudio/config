@@ -150,3 +150,6 @@ production:
   data_dir: "production/out"
   dataset: !expr file.path(data_dir, file)
 ```
+
+You can't reference other expressions, but it will only generate a warning and then assign a NULL value.
+

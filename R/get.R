@@ -95,17 +95,33 @@ get <- function(value = NULL,
   active_config <- merge_lists(default_config, do_get(config))
 
   # check whether any expressions need to be evaluated recursively
-
+  eval_issues <- list()
   eval_recursively <- function(x) {
     is_expr <- vapply(x, is.expression, logical(1))
-    new_env <- list2env(x[!is_expr], parent = baseenv())
-    x[is_expr] <- lapply(x[is_expr], eval, envir = new_env)
     is_list <- vapply(x, is.list, logical(1))
+    new_env <- list2env(x[!is_expr & !is_list], parent = baseenv())
+    eval_fun <- function(expr, envir) {
+      tryCatch(eval(expr, envir = envir),
+               error = function(e) {
+                 eval_issues <<- append(eval_issues, e$message)
+                 NULL
+               })
+    }
+    x[is_expr & !is_list] <- lapply(x[is_expr & !is_list], eval_fun, envir = new_env)
     x[is_list] <- lapply(x[is_list], eval_recursively)
     x
   }
 
   active_config <- eval_recursively(active_config)
+
+  if (length(eval_issues)) {
+    msg <- paste("Attempt to assign value from expression.",
+                 "Only directly assigned values can be used in expressions.",
+                 ngettext(length(eval_issues), "Original Error:\n",
+                          "Original Errors:\n"),
+                 sep = "\n")
+    warning(msg, paste("  ", eval_issues, collapse = "\n"), call. = FALSE)
+  }
 
   # return either the entire config or a requested value
   if (!is.null(value))
