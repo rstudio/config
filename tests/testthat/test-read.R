@@ -1,7 +1,8 @@
 context("read")
 
 test_that("configuration file can be loaded", {
-  config::get()
+  config::get() %>%
+    expect_type("list")
 })
 
 test_that("default configuration can be read", {
@@ -53,25 +54,3 @@ test_that("expressions are evaluated recursively", {
   )
 })
 
-<<<<<<< Updated upstream
-=======
-# test_that("expressions can use previously assigned parameters", {
-#   expect_identical(
-#     config::get("new_color", config = "assigned"), "red-orange")
-# })
-
-test_that("expressions can use previously assigned parameters", {
-  config::get("new_color", config = "assigned") %>%
-    expect_warning(".*Attempt to assign nested list value from expression..*") %>%
-    expect_identical("red-orange")
-})
-
-test_that("expressions can't use previously other expressions", {
-  expect_identical(
-    config::get("new_nested_not_found", config = "assigned"),
-    NULL
-  )
-})
-
-
->>>>>>> Stashed changes
