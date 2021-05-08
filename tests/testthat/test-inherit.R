@@ -1,4 +1,3 @@
-context("inherit")
 
 test_that("configurations inherit from default", {
   conf <- config::get(config = "development")
