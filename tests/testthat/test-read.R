@@ -1,6 +1,7 @@
 
 test_that("configuration file can be loaded", {
-  config::get()
+  config::get() %>%
+    expect_type("list")
 })
 
 test_that("default configuration can be read", {
