@@ -190,6 +190,22 @@
 <span id="cb11-7"><a href="#cb11-7"></a><span class="at">  </span><span class="fu">cores</span><span class="kw">:</span><span class="at"> !expr getOption("mc.cores")</span></span>
 <span id="cb11-8"><a href="#cb11-8"></a><span class="at">  </span><span class="fu">debug</span><span class="kw">:</span><span class="at"> !expr Sys.getenv("ENABLE_DEBUG") == "1"</span></span>
 <span id="cb11-9"><a href="#cb11-9"></a><span class="at">  </span><span class="fu">server</span><span class="kw">:</span><span class="at"> !expr config::get("server", file = "/etc/server-config.yml")</span></span></code></pre></div>
+<div id="referencing-previously-assigned-parameters" class="section level3">
+<h3 class="hasAnchor">
+<a href="#referencing-previously-assigned-parameters" class="anchor"></a>Referencing Previously Assigned Parameters</h3>
+<p>You can use any previously assigned parameter inside of R code so long as it is assigned directly.</p>
+<div class="sourceCode" id="cb12"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1"></a><span class="fu">default</span><span class="kw">:</span></span>
+<span id="cb12-2"><a href="#cb12-2"></a><span class="at">  </span><span class="fu">file</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span>
+<span id="cb12-3"><a href="#cb12-3"></a></span>
+<span id="cb12-4"><a href="#cb12-4"></a><span class="fu">test</span><span class="kw">:</span></span>
+<span id="cb12-5"><a href="#cb12-5"></a><span class="at">  </span><span class="fu">data_dir</span><span class="kw">:</span><span class="at"> </span><span class="st">"test/out"</span></span>
+<span id="cb12-6"><a href="#cb12-6"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> !expr file.path(data_dir, file)</span></span>
+<span id="cb12-7"><a href="#cb12-7"></a><span class="at">  </span></span>
+<span id="cb12-8"><a href="#cb12-8"></a><span class="fu">production</span><span class="kw">:</span></span>
+<span id="cb12-9"><a href="#cb12-9"></a><span class="at">  </span><span class="fu">data_dir</span><span class="kw">:</span><span class="at"> </span><span class="st">"production/out"</span></span>
+<span id="cb12-10"><a href="#cb12-10"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> !expr file.path(data_dir, file)</span></span></code></pre></div>
+<p>You can’t reference other expressions, but it will only generate a warning and then assign a NULL value.</p>
+</div>
 </div>
   </div>
 
