@@ -1,4 +1,3 @@
-context("parent")
 
 test_that("config file is discovered in parent directory", {
   expect_identical(config::get("color", file = "parent/child/config.yml"),
