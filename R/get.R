@@ -113,9 +113,8 @@ get <- function(value = NULL,
     is_expr <- vapply(x, is.expression, logical(1))
     is_list <- vapply(x, is.list, logical(1))
 
-    if (level >= 1) {
-      eval_env <<- list2env(x[!is_expr & !is_list], envir = eval_env)
-      # print(ls.str(envir = eval_env), sep = "\n")
+    if (level == 1) {
+      eval_env <- list2env(x[!is_expr & !is_list], envir = eval_env)
     }
     x[is_expr & !is_list] <- lapply(x[is_expr & !is_list], eval_fun, envir = eval_env)
     x[is_list] <- lapply(x[is_list], eval_recursively, level = level + 1)
@@ -130,7 +129,7 @@ get <- function(value = NULL,
                  ngettext(length(eval_issues), "Original Error:\n",
                           "Original Errors:\n"),
                  sep = "\n")
-    warning(msg, paste("* ", eval_issues, collapse = "\n"), call. = TRUE)
+    stop(msg, paste("* ", eval_issues, collapse = "\n"), call. = TRUE)
   }
 
   # return either the entire config or a requested value
