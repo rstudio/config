@@ -96,17 +96,41 @@ get <- function(value = NULL,
 
   # check whether any expressions need to be evaluated recursively
 
-  eval_recursively <- function(x){
+  eval_issues <- list()
+  eval_env = new.env(parent = baseenv())
+  eval_fun <- function(expr, envir) {
+    tryCatch(
+      eval(expr, envir = envir),
+      error = function(e) {
+        eval_issues <<- append(
+          eval_issues,
+          paste(deparse(e$call), e$message, sep = ": ")
+        )
+        NULL
+      })
+  }
+  eval_recursively <- function(x, level = 1) {
     is_expr <- vapply(x, is.expression, logical(1))
-    x[is_expr] <- lapply(x[is_expr], eval, envir = baseenv())
-
     is_list <- vapply(x, is.list, logical(1))
-    x[is_list] <- lapply(x[is_list], eval_recursively)
 
+    if (level == 1) {
+      eval_env <- list2env(x[!is_expr & !is_list], envir = eval_env)
+    }
+    x[is_expr & !is_list] <- lapply(x[is_expr & !is_list], eval_fun, envir = eval_env)
+    x[is_list] <- lapply(x[is_list], eval_recursively, level = level + 1)
     x
   }
 
   active_config <- eval_recursively(active_config)
+
+  if (length(eval_issues)) {
+    msg <- paste("Attempt to assign nested list value from expression.",
+                 "Only directly assigned values can be used in expressions.",
+                 ngettext(length(eval_issues), "Original Error:\n",
+                          "Original Errors:\n"),
+                 sep = "\n")
+    stop(msg, paste("* ", eval_issues, collapse = "\n"), call. = TRUE)
+  }
 
   # return either the entire config or a requested value
   if (!is.null(value))
