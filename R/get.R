@@ -4,8 +4,7 @@
 #' Read from the currently active configuration, retrieving either a
 #' single named value or all values as a list.
 #'
-#' For additional details see the package website at
-#'  \href{https://github.com/rstudio/config}{https://github.com/rstudio/config}.
+#' For additional details see <https://rstudio.github.io/config/>.
 #'
 #' @param value Name of value (`NULL` to read all values)
 #'
@@ -27,6 +26,8 @@
 #' @return A list, or vector, corresponding to the contents of the config file.
 #'
 #' @seealso [is_active()], [merge()]
+#'
+#' @example inst/examples/example_get.R
 #'
 #' @export
 get <- function(value = NULL,

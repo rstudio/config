@@ -13,7 +13,8 @@ Suggests:
     knitr,
     rmarkdown,
     covr,
-    spelling
+    spelling,
+    withr
 Description: Manage configuration values across multiple environments (e.g.
   development, test, production). Read values using a function that determines
   the current environment and returns the appropriate value.
