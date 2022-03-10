@@ -7,10 +7,9 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org/package=config)
-[![R build
-status](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
+[![R-CMD-check](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
 [![Codecov test
-coverage](https://codecov.io/gh/rstudio/config/branch/master/graph/badge.svg)](https://codecov.io/gh/rstudio/config?branch=master)
+coverage](https://codecov.io/gh/rstudio/config/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rstudio/config?branch=main)
 <!-- badges: end -->
 
 The **config** package makes it easy to manage environment specific
@@ -19,7 +18,9 @@ for development, testing, and production environments.
 
 You can install the **config** package from CRAN as follows:
 
-    install.packages("config")
+``` r
+install.packages("config")
+```
 
 ## Usage
 
@@ -33,26 +34,32 @@ arbitrary other named configurations, for example:
 
 **config.yml**
 
-    default:
-      trials: 5
-      dataset: "data-sampled.csv"
-      
-    production:
-      trials: 30
-      dataset: "data.csv"
+``` yaml
+default:
+  trials: 5
+  dataset: "data-sampled.csv"
+  
+production:
+  trials: 30
+  dataset: "data.csv"
+```
 
 To read configuration values you call the `config::get` function, which
 returns a list containing all of the values for the currently active
 configuration:
 
-    config <- config::get()
-    config$trials
-    config$dataset
+``` r
+config <- config::get()
+config$trials
+config$dataset
+```
 
 You can also read a single value from the configuration as follows:
 
-    config::get("trials")
-    config::get("dataset")
+``` r
+config::get("trials")
+config::get("dataset")
+```
 
 The `get` function takes an optional `config` argument which determines
 which configuration to read values from (the “default” configuration is
@@ -66,16 +73,20 @@ is typically set within a site-wide `Renviron` or `Rprofile` (see [R
 Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html)
 for details on these files).
 
-    # set the active configuration globally via Renviron.site or Rprofile.site
-    Sys.setenv(R_CONFIG_ACTIVE = "production")
+``` r
+# set the active configuration globally via Renviron.site or Rprofile.site
+Sys.setenv(R_CONFIG_ACTIVE = "production")
 
-    # read configuration value (will return 30 from the "production" config)
-    config::get("trials")
+# read configuration value (will return 30 from the "production" config)
+config::get("trials")
+```
 
 You can check whether a particular configuration is active using the
 `config::is_active` function:
 
-    config::is_active("production")
+``` r
+config::is_active("production")
+```
 
 ## Defaults and Inheritance
 
@@ -88,12 +99,14 @@ from the `default` configuration:
 
 **config.yml**
 
-    default:
-      trials: 5
-      dataset: "data-sampled.csv"
-      
-    production:
-      dataset: "data.csv"
+``` yaml
+default:
+  trials: 5
+  dataset: "data-sampled.csv"
+  
+production:
+  dataset: "data.csv"
+```
 
 All configurations automatically inherit from the “default”
 configuration. Configurations can also inherit from one or more other
@@ -102,17 +115,19 @@ configuration inherits from the `test` configuration:
 
 **config.yml**
 
-    default:
-      trials: 5
-      dataset: "data-sampled.csv"
+``` yaml
+default:
+  trials: 5
+  dataset: "data-sampled.csv"
 
-    test:
-      trials: 30
-      dataset: "data-test.csv"
-      
-    production:
-      inherits: test
-      dataset: "data.csv"
+test:
+  trials: 30
+  dataset: "data-test.csv"
+  
+production:
+  inherits: test
+  dataset: "data.csv"
+```
 
 ## Configuration Files
 
@@ -123,12 +138,16 @@ file is found in the initially specified directory).
 You can use the `file` argument of `config::get` to read from an
 alternate location. For example:
 
-    config <- config::get(file = "conf/config.yml")
+``` r
+config <- config::get(file = "conf/config.yml")
+```
 
 If you don’t want to ever scan parent directories for configuration
 files then you can specify `use_parent = FALSE`:
 
-    config <- config::get(file = "conf/config.yml", use_parent = FALSE)
+``` r
+config <- config::get(file = "conf/config.yml", use_parent = FALSE)
+```
 
 ## R Code
 
@@ -137,12 +156,14 @@ with `!expr`. This could be useful in the case where you want to base
 configuration values on environment variables, R options, or even other
 config files. For example:
 
-    default:
-      cores: 2
-      debug: true
-      server: "localhost:5555"
-       
-    production:
-      cores: !expr getOption("mc.cores")
-      debug: !expr Sys.getenv("ENABLE_DEBUG") == "1"
-      server: !expr config::get("server", file = "/etc/server-config.yml")
+``` yaml
+default:
+  cores: 2
+  debug: true
+  server: "localhost:5555"
+   
+production:
+  cores: !expr getOption("mc.cores")
+  debug: !expr Sys.getenv("ENABLE_DEBUG") == "1"
+  server: !expr config::get("server", file = "/etc/server-config.yml")
+```

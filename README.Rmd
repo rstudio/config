@@ -18,8 +18,8 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org/package=config)
-[![R build status](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
-[![Codecov test coverage](https://codecov.io/gh/rstudio/config/branch/master/graph/badge.svg)](https://codecov.io/gh/rstudio/config?branch=master)
+[![R-CMD-check](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
+[![Codecov test coverage](https://codecov.io/gh/rstudio/config/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rstudio/config?branch=main)
 <!-- badges: end -->
 
 
