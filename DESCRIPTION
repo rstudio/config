@@ -19,7 +19,7 @@ Description: Manage configuration values across multiple environments (e.g.
   development, test, production). Read values using a function that determines
   the current environment and returns the appropriate value.
 License: GPL-3
-URL: https://github.com/rstudio/config
+URL: https://rstudio.github.io/config/, https://github.com/rstudio/config
 BugReports: https://github.com/rstudio/config/issues
 RoxygenNote: 7.1.2
 Roxygen: list(markdown = TRUE)
