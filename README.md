@@ -149,6 +149,16 @@ files then you can specify `use_parent = FALSE`:
 config <- config::get(file = "conf/config.yml", use_parent = FALSE)
 ```
 
+## Do not attach the package using `libary(config)`
+
+We strongly recommend you use `config::get()` rather than attaching the
+package using `library(config)`.
+
+In fact, we strongly recommend you never use `library(config)`.
+
+The underlying reason is that the `get()` and `merge()` functions in
+`{config}` will mask these functions with the same names in base R.
+
 ## R Code
 
 You can execute R code within configuration files by prefacing values
@@ -167,3 +177,24 @@ production:
   debug: !expr Sys.getenv("ENABLE_DEBUG") == "1"
   server: !expr config::get("server", file = "/etc/server-config.yml")
 ```
+
+### Referencing Previously Assigned Parameters
+
+You can use any previously assigned parameter inside of R code so long
+as it is assigned directly.
+
+``` yaml
+default:
+  file: "data.csv"
+
+test:
+  data_dir: "test/out"
+  dataset: !expr file.path(data_dir, file)
+  
+production:
+  data_dir: "production/out"
+  dataset: !expr file.path(data_dir, file)
+```
+
+You can’t reference other expressions, but it will only generate a
+warning and then assign a NULL value.

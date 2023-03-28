@@ -11,10 +11,6 @@ production:
   dataset: 'data.csv'
 "
 
-# write config.yaml into tempdir
-cat(yaml, file = file.path(tempdir(), "config.yml"))
-
-# Ensure that base::get() doesn't get masked, for tests on CRAN
 get <- base::get
 
 # only run examples if 'withr' is installed
@@ -23,6 +19,9 @@ if (requireNamespace("withr", quietly = TRUE)) {
   # These examples simulate the presence of a config file by reading from
   # tempdir().  In the real world you would typically not use withr::with_dir(),
   # but simply read the config file using config::get()
+
+  # write config.yaml into tempdir
+  cat(yaml, file = file.path(tempdir(), "config.yml"))
 
   withr::with_dir(tempdir(), {
     config::get()

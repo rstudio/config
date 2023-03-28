@@ -39,6 +39,18 @@ single named value or all values as a list.
 \details{
 For additional details see \url{https://rstudio.github.io/config/}.
 }
+\section{Warning - Do not attach the package using library(config)}{
+
+
+We strongly recommend you use \code{config::get()} rather than attaching the
+package using \code{library(config)}.
+
+In fact, we strongly recommend you never use \code{library(config)}.
+
+The underlying reason is that the \code{get()} and \code{merge()} functions in
+\code{{config}} will mask these functions with the same names in base R.
+}
+
 \examples{
 # Create an example yaml file and write into tempdir()
 # In real usage, this config file would be at your project root
@@ -53,10 +65,6 @@ production:
   dataset: 'data.csv'
 "
 
-# write config.yaml into tempdir
-cat(yaml, file = file.path(tempdir(), "config.yml"))
-
-# Ensure that base::get() doesn't get masked, for tests on CRAN
 get <- base::get
 
 # only run examples if 'withr' is installed
@@ -65,6 +73,9 @@ if (requireNamespace("withr", quietly = TRUE)) {
   # These examples simulate the presence of a config file by reading from
   # tempdir().  In the real world you would typically not use withr::with_dir(),
   # but simply read the config file using config::get()
+
+  # write config.yaml into tempdir
+  cat(yaml, file = file.path(tempdir(), "config.yml"))
 
   withr::with_dir(tempdir(), {
     config::get()

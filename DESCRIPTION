@@ -21,7 +21,7 @@ Description: Manage configuration values across multiple environments (e.g.
 License: GPL-3
 URL: https://rstudio.github.io/config/, https://github.com/rstudio/config
 BugReports: https://github.com/rstudio/config/issues
-RoxygenNote: 7.1.2
+RoxygenNote: 7.2.3
 Roxygen: list(markdown = TRUE)
 VignetteBuilder: knitr
 Encoding: UTF-8

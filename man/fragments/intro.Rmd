@@ -118,6 +118,16 @@ If you don't want to ever scan parent directories for configuration files then y
 config <- config::get(file = "conf/config.yml", use_parent = FALSE)
 ```
 
+
+## Do not attach the package using `libary(config)`
+
+We strongly recommend you use `config::get()` rather than attaching the package using `library(config)`.
+
+In fact, we strongly recommend you never use `library(config)`.
+
+The underlying reason is that the `get()` and `merge()` functions in `{config}` will mask these functions with the same names in base R.
+
+
 ## R Code 
 
 You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:

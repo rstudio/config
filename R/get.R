@@ -6,6 +6,16 @@
 #'
 #' For additional details see <https://rstudio.github.io/config/>.
 #'
+#' @section Warning - Do not attach the package using library(config):
+#'
+#' We strongly recommend you use `config::get()` rather than attaching the
+#' package using `library(config)`.
+#'
+#' In fact, we strongly recommend you never use `library(config)`.
+#'
+#' The underlying reason is that the `get()` and `merge()` functions in
+#' `{config}` will mask these functions with the same names in base R.
+#'
 #' @param value Name of value (`NULL` to read all values)
 #'
 #' @param config Name of configuration to read from. Defaults to
