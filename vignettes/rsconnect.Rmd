@@ -1,0 +1,35 @@
+---
+title: "Using config with Posit Connect"
+output: rmarkdown::html_vignette
+vignette: >
+  %\VignetteIndexEntry{Using config with Posit Connect}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
+```{r, include = FALSE}
+knitr::opts_chunk$set(
+  collapse = TRUE,
+  comment = "#>"
+)
+```
+
+
+The purpose of the `config` package is to respond to environment variables that could be set to different values on different machines. Specifically, config reacts to the value of `R_CONFIG_ACTIVE`, and this allows you to set configurations for different machines, e.g. in dev or production.
+
+If you deploy your code to a Posit Connect instance, then you can use the fact that Connect sets the value of `R_CONFIG_ACTIVE` to `rsconnect`.
+
+This means you can create a configuration file using the value `rsconnect`, for example:
+
+``` yaml
+default:
+  trials: 5
+  dataset: "data-sampled.csv"
+  
+rsconnect:
+  trials: 30
+  dataset: "data.csv"
+```
+
+Note: this value can be configured by your system administrator, so check your own system configuration!  See <https://docs.posit.co/connect/admin/appendix/configuration/#R.ConfigActive> for detail.
+

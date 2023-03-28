@@ -10,7 +10,7 @@ status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org
 [![R-CMD-check](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/rstudio/config/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rstudio/config?branch=main)
-<!-- badges: end -->
+<!-- badges: end  -->
 
 The **config** package makes it easy to manage environment specific
 configuration values. For example, you might want to use distinct values

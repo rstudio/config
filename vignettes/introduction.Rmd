@@ -1,10 +1,10 @@
 ---
-title: "config package for R"
+title: "Getting started with the config package"
 output: 
   rmarkdown::html_vignette:
     readme: true
 vignette: >
-  %\VignetteIndexEntry{config package for R}
+  %\VignetteIndexEntry{Getting started with the config package}
   %\VignetteEngine{knitr::rmarkdown}
   %\VignetteEncoding{UTF-8}
 ---

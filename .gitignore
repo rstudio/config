@@ -6,3 +6,4 @@ vignettes/*.html
 issues/
 
 docs
+inst/doc
