@@ -18,6 +18,18 @@ Configuration which includes the values from
 \description{
 Merge one configuration into another recursively.
 }
+\section{Warning - Do not attach the package using library(config)}{
+
+
+We strongly recommend you use \code{config::get()} rather than attaching the
+package using \code{library(config)}.
+
+In fact, we strongly recommend you never use \code{library(config)}.
+
+The underlying reason is that the \code{get()} and \code{merge()} functions in
+\code{{config}} will mask these functions with the same names in base R.
+}
+
 \seealso{
 \code{\link[=get]{get()}}
 }

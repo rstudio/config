@@ -19,5 +19,26 @@ dynamic:
     shape: !expr paste("circle")
     taste: !expr paste("sweet")
 
+assigned:
+  nested:
+    color: "green"
+    not_found: !expr paste("cyan")
+    nested_color_shape: !expr paste(color, line) # "red dotted"
+  color: "foo"
+  line: "dotted"
+  color_shape: !expr paste(color, line) # "foo dotted"
+
+assigned_error:
+  nested:
+    color: "green"
+    not_found: !expr paste("cyan")
+    nested_color_shape: !expr paste(color, line) # "foo dotted"
+  color: "foo"
+  line: "dotted"
+  color_shape: !expr paste(color, line) # "foo dotted"
+  new_color: !expr paste(color, "orange", sep = "-")
+  new_nested_color: !expr paste(nested$color, "orange", sep = "-")
+  new_nested_not_found: !expr paste(nested$not_found, "orange", sep = "-")
+
 error:
   color: !expr stop("this should not be evaluated")

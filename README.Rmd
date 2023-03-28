@@ -25,4 +25,3 @@ knitr::opts_chunk$set(
 
 ```{r child="man/fragments/intro.Rmd"}
 ```
-
