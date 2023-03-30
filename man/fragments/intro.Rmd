@@ -3,12 +3,28 @@ knitr::opts_chunk$set(eval = TRUE, results = 'hide')
 Sys.setenv(R_CONFIG_ACTIVE = "default")
 ```
 
+```{css, echo=FALSE}
+.codeblock-label {
+  color: #000;
+  display: inline-block;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #cccccc;
+  margin-bottom: -1px;
+  font-size: 0.875em;
+  font-family: var(--bs-font-monospace);
+}
+```
 
-The **config** package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.
 
-You can install the **config** package from CRAN as follows:
+## Overview
 
-```{r, eval=FALSE}
+The `config` package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.
+
+You can install the `config` package from CRAN by using:
+
+``` r
 install.packages("config")
 ```
 
@@ -18,7 +34,8 @@ Configurations are defined using a [YAML](https://yaml.org/about.html) text file
 
 Configuration files include default values as well as values for arbitrary other named configurations, for example:
 
-**config.yml**
+
+<p class = "codeblock-label">config.yml</p>
 
 ```yaml
 default:
@@ -73,7 +90,7 @@ Sys.setenv(R_CONFIG_ACTIVE = "default")
 
 The `default` configuration provides a set of values to use when no named configuration is active. Other configurations automatically inherit all `default` values so need only define values specialized for that configuration. For example, in this configuration the `production` configuration doesn't specify a value for `trials` so it will be read from the `default` configuration:
 
-**config.yml**
+<p class = "codeblock-label">config.yml</p>
 
 ```yaml
 default:
@@ -86,7 +103,7 @@ production:
 
 All configurations automatically inherit from the "default" configuration. Configurations can also inherit from one or more other named configurations. For example, in this file the `production` configuration inherits from the `test` configuration:
 
-**config.yml**
+<p class = "codeblock-label">config.yml</p>
 
 ```yaml
 default:
@@ -128,9 +145,11 @@ In fact, we strongly recommend you never use `library(config)`.
 The underlying reason is that the `get()` and `merge()` functions in `{config}` will mask these functions with the same names in base R.
 
 
-## R Code 
+## Embedding R code inside the yaml file
 
 You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:
+
+<p class = "codeblock-label">config.yml</p>
 
 ```yaml
 default:
@@ -147,6 +166,8 @@ production:
 ### Referencing Previously Assigned Parameters
 
 You can use any previously assigned parameter inside of R code so long as it is assigned directly.
+
+<p class = "codeblock-label">config.yml</p>
 
 ```yaml
 default:

@@ -10,13 +10,27 @@ status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org
 [![R-CMD-check](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/rstudio/config/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rstudio/config?branch=main)
-<!-- badges: end  -->
+<!-- badges: end -->
 
-The **config** package makes it easy to manage environment specific
+<style type="text/css">
+.codeblock-label {
+  color: #000;
+  display: inline-block;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #cccccc;
+  margin-bottom: -1px;
+}
+</style>
+
+## Overview
+
+The `config` package makes it easy to manage environment specific
 configuration values. For example, you might want to use distinct values
 for development, testing, and production environments.
 
-You can install the **config** package from CRAN as follows:
+You can install the `config` package from CRAN by using:
 
 ``` r
 install.packages("config")
@@ -32,7 +46,9 @@ is found in the initially specified directory).
 Configuration files include default values as well as values for
 arbitrary other named configurations, for example:
 
-**config.yml**
+<p class="codeblock-label">
+config.yml
+</p>
 
 ``` yaml
 default:
@@ -97,7 +113,9 @@ that configuration. For example, in this configuration the `production`
 configuration doesn’t specify a value for `trials` so it will be read
 from the `default` configuration:
 
-**config.yml**
+<p class="codeblock-label">
+config.yml
+</p>
 
 ``` yaml
 default:
@@ -113,7 +131,9 @@ configuration. Configurations can also inherit from one or more other
 named configurations. For example, in this file the `production`
 configuration inherits from the `test` configuration:
 
-**config.yml**
+<p class="codeblock-label">
+config.yml
+</p>
 
 ``` yaml
 default:
@@ -159,12 +179,16 @@ In fact, we strongly recommend you never use `library(config)`.
 The underlying reason is that the `get()` and `merge()` functions in
 `{config}` will mask these functions with the same names in base R.
 
-## R Code
+## Embedding R code inside the yaml file
 
 You can execute R code within configuration files by prefacing values
 with `!expr`. This could be useful in the case where you want to base
 configuration values on environment variables, R options, or even other
 config files. For example:
+
+<p class="codeblock-label">
+config.yml
+</p>
 
 ``` yaml
 default:
@@ -182,6 +206,10 @@ production:
 
 You can use any previously assigned parameter inside of R code so long
 as it is assigned directly.
+
+<p class="codeblock-label">
+config.yml
+</p>
 
 ``` yaml
 default:
