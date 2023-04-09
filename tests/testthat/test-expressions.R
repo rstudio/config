@@ -1,4 +1,3 @@
-library(magrittr)
 library(testthat)
 test_that("expressions can use previously assigned parameters", {
   config::get("color", config = "assigned") %>%

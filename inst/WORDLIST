@@ -1,6 +1,8 @@
+CMD
 Codecov
+ConfigActive
 YAML
-github
+dev
 https
-rstudio
+yaml
 yml
