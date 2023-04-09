@@ -7,7 +7,13 @@
     <loc>/articles/index.html</loc>
   </url>
   <url>
+    <loc>/articles/inheritance.html</loc>
+  </url>
+  <url>
     <loc>/articles/introduction.html</loc>
+  </url>
+  <url>
+    <loc>/articles/rsconnect.html</loc>
   </url>
   <url>
     <loc>/authors.html</loc>

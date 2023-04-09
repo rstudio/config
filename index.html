@@ -52,7 +52,9 @@
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
-    <a class="dropdown-item" href="articles/introduction.html">config package for R</a>
+    <a class="dropdown-item" href="articles/inheritance.html">Inheritance and R expressions</a>
+    <a class="dropdown-item" href="articles/introduction.html">Getting started with the config package</a>
+    <a class="dropdown-item" href="articles/rsconnect.html">Using config with Posit Connect</a>
   </div>
 </li>
 <li class="nav-item">
@@ -84,16 +86,33 @@
 </div>
 <!-- badges: start -->
 
-<p>The <strong>config</strong> package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.</p>
-<p>You can install the <strong>config</strong> package from CRAN as follows:</p>
+<style type="text/css">
+.codeblock-label {
+  color: #000;
+  display: inline-block;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #cccccc;
+  margin-bottom: -1px;
+}
+</style>
+<div class="section level2">
+<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
+</h2>
+<p>The <code>config</code> package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.</p>
+<p>You can install the <code>config</code> package from CRAN by using:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"config"</span><span class="op">)</span></span></code></pre></div>
+</div>
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
 <p>Configurations are defined using a <a href="https://yaml.org/about.html" class="external-link">YAML</a> text file and are read by default from a file named <strong>config.yml</strong> in the current working directory (or parent directories if no config file is found in the initially specified directory).</p>
 <p>Configuration files include default values as well as values for arbitrary other named configurations, for example:</p>
-<p><strong>config.yml</strong></p>
+<p class="codeblock-label">
+config.yml
+</p>
 <div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
 <span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
 <span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
@@ -130,7 +149,9 @@
 <h2 id="defaults-and-inheritance">Defaults and Inheritance<a class="anchor" aria-label="anchor" href="#defaults-and-inheritance"></a>
 </h2>
 <p>The <code>default</code> configuration provides a set of values to use when no named configuration is active. Other configurations automatically inherit all <code>default</code> values so need only define values specialized for that configuration. For example, in this configuration the <code>production</code> configuration doesn’t specify a value for <code>trials</code> so it will be read from the <code>default</code> configuration:</p>
-<p><strong>config.yml</strong></p>
+<p class="codeblock-label">
+config.yml
+</p>
 <div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
 <span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
 <span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
@@ -138,7 +159,9 @@
 <span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">production</span><span class="kw">:</span></span>
 <span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
 <p>All configurations automatically inherit from the “default” configuration. Configurations can also inherit from one or more other named configurations. For example, in this file the <code>production</code> configuration inherits from the <code>test</code> configuration:</p>
-<p><strong>config.yml</strong></p>
+<p class="codeblock-label">
+config.yml
+</p>
 <div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
 <span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
 <span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
@@ -171,9 +194,12 @@
 <p>The underlying reason is that the <code><a href="reference/get.html">get()</a></code> and <code><a href="reference/merge.html">merge()</a></code> functions in <a href="https://rstudio.github.io/config/" class="external-link">config</a> will mask these functions with the same names in base R.</p>
 </div>
 <div class="section level2">
-<h2 id="r-code">R Code<a class="anchor" aria-label="anchor" href="#r-code"></a>
+<h2 id="embedding-r-code-inside-the-yaml-file">Embedding R code inside the yaml file<a class="anchor" aria-label="anchor" href="#embedding-r-code-inside-the-yaml-file"></a>
 </h2>
 <p>You can execute R code within configuration files by prefacing values with <code>!expr</code>. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:</p>
+<p class="codeblock-label">
+config.yml
+</p>
 <div class="sourceCode" id="cb11"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
 <span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cores</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
 <span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">debug</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
@@ -187,6 +213,9 @@
 <h3 id="referencing-previously-assigned-parameters">Referencing Previously Assigned Parameters<a class="anchor" aria-label="anchor" href="#referencing-previously-assigned-parameters"></a>
 </h3>
 <p>You can use any previously assigned parameter inside of R code so long as it is assigned directly.</p>
+<p class="codeblock-label">
+config.yml
+</p>
 <div class="sourceCode" id="cb12"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
 <span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">file</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span>
 <span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
@@ -230,7 +259,8 @@
 <ul class="list-unstyled">
 <li>JJ Allaire <br><small class="roles"> Author </small>  </li>
 <li>Andrie de Vries <br><small class="roles"> Maintainer </small>  </li>
-<li>RStudio <br><small class="roles"> Copyright holder, funder </small>  </li>
+<li>
+<a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" style="margin-bottom: 3px;"></a> <br><small class="roles"> Copyright holder, funder </small>  </li>
 </ul>
 </div>
 
@@ -249,7 +279,7 @@
 
     <footer><div class="pkgdown-footer-left">
   <p></p>
-<p>Developed by JJ Allaire, Andrie de Vries, RStudio.</p>
+<p>Developed by JJ Allaire, Andrie de Vries, <a href="https://www.posit.co" class="external-link"><img src="https://www.tidyverse.org/posit-logo.svg" alt="Posit" height="16" style="margin-bottom: 3px;"></a>.</p>
 </div>
 
 <div class="pkgdown-footer-right">
