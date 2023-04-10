@@ -1,20 +1,21 @@
+---
+title: "Getting started with the config package"
+output: 
+  rmarkdown::html_vignette:
+    readme: true
+vignette: >
+  %\VignetteIndexEntry{Getting started with the config package}
+  %\VignetteEngine{knitr::rmarkdown}
+  %\VignetteEncoding{UTF-8}
+---
+
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(eval = TRUE, results = 'hide')
 Sys.setenv(R_CONFIG_ACTIVE = "default")
 ```
 
-```{css, echo=FALSE}
-.codeblock-label {
-  color: #000;
-  display: inline-block;
-  border-top-left-radius: .5rem;
-  border-top-right-radius: .5rem;
-  padding: 0.25rem 0.75rem;
-  background-color: #cccccc;
-  margin-bottom: -1px;
-  font-size: 0.875em;
-  font-family: var(--bs-font-monospace);
-}
+
+```{html, child="fragments/codeblock.html", echo=FALSE}
 ```
 
 
@@ -22,11 +23,6 @@ Sys.setenv(R_CONFIG_ACTIVE = "default")
 
 The `config` package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.
 
-You can install the `config` package from CRAN by using:
-
-``` r
-install.packages("config")
-```
 
 ## Usage
 
@@ -86,39 +82,6 @@ config::is_active("production")
 Sys.setenv(R_CONFIG_ACTIVE = "default")
 ```
 
-## Defaults and Inheritance
-
-The `default` configuration provides a set of values to use when no named configuration is active. Other configurations automatically inherit all `default` values so need only define values specialized for that configuration. For example, in this configuration the `production` configuration doesn't specify a value for `trials` so it will be read from the `default` configuration:
-
-<p class = "codeblock-label">config.yml</p>
-
-```yaml
-default:
-  trials: 5
-  dataset: "data-sampled.csv"
-  
-production:
-  dataset: "data.csv"
-```
-
-All configurations automatically inherit from the "default" configuration. Configurations can also inherit from one or more other named configurations. For example, in this file the `production` configuration inherits from the `test` configuration:
-
-<p class = "codeblock-label">config.yml</p>
-
-```yaml
-default:
-  trials: 5
-  dataset: "data-sampled.csv"
-
-test:
-  trials: 30
-  dataset: "data-test.csv"
-  
-production:
-  inherits: test
-  dataset: "data.csv"
-```
-
 ## Configuration Files
 
 By default configuration data is read from a file named **config.yml** within the current working directory (or parent directories if no config file is found in the initially specified directory). 
@@ -136,51 +99,7 @@ config <- config::get(file = "conf/config.yml", use_parent = FALSE)
 ```
 
 
-## Do not attach the package using `libary(config)`
-
-We strongly recommend you use `config::get()` rather than attaching the package using `library(config)`.
-
-In fact, we strongly recommend you never use `library(config)`.
-
-The underlying reason is that the `get()` and `merge()` functions in `{config}` will mask these functions with the same names in base R.
 
 
-## Embedding R code inside the yaml file
-
-You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:
-
-<p class = "codeblock-label">config.yml</p>
-
-```yaml
-default:
-  cores: 2
-  debug: true
-  server: "localhost:5555"
-   
-production:
-  cores: !expr getOption("mc.cores")
-  debug: !expr Sys.getenv("ENABLE_DEBUG") == "1"
-  server: !expr config::get("server", file = "/etc/server-config.yml")
+```{r child="../man/fragments/no_attach.Rmd"}
 ```
-
-### Referencing Previously Assigned Parameters
-
-You can use any previously assigned parameter inside of R code so long as it is assigned directly.
-
-<p class = "codeblock-label">config.yml</p>
-
-```yaml
-default:
-  file: "data.csv"
-
-test:
-  data_dir: "test/out"
-  dataset: !expr file.path(data_dir, file)
-  
-production:
-  data_dir: "production/out"
-  dataset: !expr file.path(data_dir, file)
-```
-
-You can't reference other expressions, but it will only generate a warning and then assign a NULL value.
-

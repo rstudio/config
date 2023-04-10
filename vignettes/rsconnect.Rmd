@@ -14,12 +14,17 @@ knitr::opts_chunk$set(
 )
 ```
 
+```{html, child="fragments/codeblock.html", echo=FALSE}
+```
 
 The purpose of the `config` package is to respond to environment variables that could be set to different values on different machines. Specifically, config reacts to the value of `R_CONFIG_ACTIVE`, and this allows you to set configurations for different machines, e.g. in dev or production.
 
 If you deploy your code to a Posit Connect instance, then you can use the fact that Connect sets the value of `R_CONFIG_ACTIVE` to `rsconnect`.
 
 This means you can create a configuration file using the value `rsconnect`, for example:
+
+
+<p class = "codeblock-label">config.yml</p>
 
 ``` yaml
 default:
@@ -39,22 +44,6 @@ You may have the use case that you use the same Connect instance to host two ins
 
 In this use case you will soon run into the problem that an individual user can not change the the environment variable `R_CONFIG_ACTIVE`, since this is configured system-wide by the administrator.
 
-In such a case, you may have a `config.yml` file like this:
-
-``` yaml
-default:
-  trials: 5
-  dataset: "data-sampled.csv"
-  
-staging:
-  trials: 20
-  dataset: "data-staging.csv"
-  
-prod:
-  trials: 30
-  dataset: "data.csv"
-```
-
 But you can still use `config` to set different values for staging and prod, by changing the environment variable that `config::get()` looks at.
 
 
@@ -64,6 +53,29 @@ Specifically, you must specify a different `config` argument to `config::get()`.
 config::get("trials", config = Sys.getenv("R_CONFIG_ACTIVE_APP"))
 ```
 
-If you configure the environment variable correctly, you should get the appropriate values for staging (20) and prod (30).
+Additionally, you may want to utilize the inheritance of `config` yaml files, by having a common configuration for `connect` and then staging and prod configurations that inherit from the `connect` configuration.
+
+In such a case, you may have a `config.yml` file like this:
 
 
+<p class = "codeblock-label">config.yml</p>
+
+``` yaml
+default:
+  trials: 5
+  dataset: "data-sampled.csv"
+
+connect:
+  trials: 30
+  
+staging:
+  inherits: connect
+  dataset: "data-staging.csv"
+  
+prod:
+  inherits: connect
+  dataset: "data.csv"
+```
+
+
+If you configure the environment variable correctly, you should get the appropriate `dataset` values for staging (`data-staging.csv`) and prod (`data.csv`).
