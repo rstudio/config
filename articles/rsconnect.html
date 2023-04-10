@@ -43,13 +43,15 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="../articles/config.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="../reference/index.html">Reference</a>
 </li>
 <li class="active nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="../articles/inheritance.html">Inheritance and R expressions</a>
-    <a class="dropdown-item" href="../articles/introduction.html">Getting started with the config package</a>
     <a class="dropdown-item" href="../articles/rsconnect.html">Using config with Posit Connect</a>
   </div>
 </li>
@@ -89,6 +91,23 @@
 
     
     
+<style>
+  .codeblock-label {
+    color: #000;
+  display: inline-block;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #cccccc;
+  margin-bottom: -0em;
+  font-size: 0.875em;
+  font-family: var(--bs-font-monospace);
+}
+
+.codeblock-label + div.sourceCode {
+  margin-top: 0;
+}
+</style>
 <p>The purpose of the <code>config</code> package is to respond to
 environment variables that could be set to different values on different
 machines. Specifically, config reacts to the value of
@@ -99,6 +118,9 @@ the fact that Connect sets the value of <code>R_CONFIG_ACTIVE</code> to
 <code>rsconnect</code>.</p>
 <p>This means you can create a configuration file using the value
 <code>rsconnect</code>, for example:</p>
+<p class="codeblock-label">
+config.yml
+</p>
 <div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
 <span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
 <span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
@@ -118,19 +140,6 @@ host two instances of your app, for staging (test) and production.</p>
 individual user can not change the the environment variable
 <code>R_CONFIG_ACTIVE</code>, since this is configured system-wide by
 the administrator.</p>
-<p>In such a case, you may have a <code>config.yml</code> file like
-this:</p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">staging</span><span class="kw">:</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">20</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-staging.csv"</span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span><span class="kw">:</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
 <p>But you can still use <code>config</code> to set different values for
 staging and prod, by changing the environment variable that
 <code><a href="../reference/get.html">config::get()</a></code> looks at.</p>
@@ -139,10 +148,34 @@ argument to <code><a href="../reference/get.html">config::get()</a></code>. For 
 new environment variable for your Connect app, called
 <code>R_CONFIG_ACTIVE_APP</code>, and then use
 <code><a href="../reference/get.html">config::get()</a></code> like this:</p>
-<div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
+<div class="sourceCode" id="cb2"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="../reference/get.html">get</a></span><span class="op">(</span><span class="st">"trials"</span>, config <span class="op">=</span> <span class="fu"><a href="https://rdrr.io/r/base/Sys.getenv.html" class="external-link">Sys.getenv</a></span><span class="op">(</span><span class="st">"R_CONFIG_ACTIVE_APP"</span><span class="op">)</span><span class="op">)</span></span></code></pre></div>
+<p>Additionally, you may want to utilize the inheritance of
+<code>config</code> yaml files, by having a common configuration for
+<code>connect</code> and then staging and prod configurations that
+inherit from the <code>connect</code> configuration.</p>
+<p>In such a case, you may have a <code>config.yml</code> file like
+this:</p>
+<p class="codeblock-label">
+config.yml
+</p>
+<div class="sourceCode" id="cb3"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb3-1"><a href="#cb3-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
+<span id="cb3-2"><a href="#cb3-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb3-3"><a href="#cb3-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
+<span id="cb3-4"><a href="#cb3-4" aria-hidden="true" tabindex="-1"></a></span>
+<span id="cb3-5"><a href="#cb3-5" aria-hidden="true" tabindex="-1"></a><span class="fu">connect</span><span class="kw">:</span></span>
+<span id="cb3-6"><a href="#cb3-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
+<span id="cb3-7"><a href="#cb3-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb3-8"><a href="#cb3-8" aria-hidden="true" tabindex="-1"></a><span class="fu">staging</span><span class="kw">:</span></span>
+<span id="cb3-9"><a href="#cb3-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> connect</span></span>
+<span id="cb3-10"><a href="#cb3-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-staging.csv"</span></span>
+<span id="cb3-11"><a href="#cb3-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb3-12"><a href="#cb3-12" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span><span class="kw">:</span></span>
+<span id="cb3-13"><a href="#cb3-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> connect</span></span>
+<span id="cb3-14"><a href="#cb3-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
 <p>If you configure the environment variable correctly, you should get
-the appropriate values for staging (20) and prod (30).</p>
+the appropriate <code>dataset</code> values for staging
+(<code>data-staging.csv</code>) and prod (<code>data.csv</code>).</p>
 </div>
   </main>
 </div>

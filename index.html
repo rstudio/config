@@ -47,13 +47,15 @@
     <div id="navbar" class="collapse navbar-collapse ms-3">
       <ul class="navbar-nav me-auto">
 <li class="nav-item">
+  <a class="nav-link" href="articles/config.html">Get started</a>
+</li>
+<li class="nav-item">
   <a class="nav-link" href="reference/index.html">Reference</a>
 </li>
 <li class="nav-item dropdown">
   <a href="#" class="nav-link dropdown-toggle" data-bs-toggle="dropdown" role="button" aria-expanded="false" aria-haspopup="true" id="dropdown-articles">Articles</a>
   <div class="dropdown-menu" aria-labelledby="dropdown-articles">
     <a class="dropdown-item" href="articles/inheritance.html">Inheritance and R expressions</a>
-    <a class="dropdown-item" href="articles/introduction.html">Getting started with the config package</a>
     <a class="dropdown-item" href="articles/rsconnect.html">Using config with Posit Connect</a>
   </div>
 </li>
@@ -86,21 +88,10 @@
 </div>
 <!-- badges: start -->
 
-<style type="text/css">
-.codeblock-label {
-  color: #000;
-  display: inline-block;
-  border-top-left-radius: .5rem;
-  border-top-right-radius: .5rem;
-  padding: 0.25rem 0.75rem;
-  background-color: #cccccc;
-  margin-bottom: -1px;
-}
-</style>
-<div class="section level2">
-<h2 id="overview">Overview<a class="anchor" aria-label="anchor" href="#overview"></a>
-</h2>
 <p>The <code>config</code> package makes it easy to manage environment specific configuration values. For example, you might want to use distinct values for development, testing, and production environments.</p>
+<div class="section level2">
+<h2 id="installation">Installation<a class="anchor" aria-label="anchor" href="#installation"></a>
+</h2>
 <p>You can install the <code>config</code> package from CRAN by using:</p>
 <div class="sourceCode" id="cb1"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu"><a href="https://rdrr.io/r/utils/install.packages.html" class="external-link">install.packages</a></span><span class="op">(</span><span class="st">"config"</span><span class="op">)</span></span></code></pre></div>
@@ -108,8 +99,7 @@
 <div class="section level2">
 <h2 id="usage">Usage<a class="anchor" aria-label="anchor" href="#usage"></a>
 </h2>
-<p>Configurations are defined using a <a href="https://yaml.org/about.html" class="external-link">YAML</a> text file and are read by default from a file named <strong>config.yml</strong> in the current working directory (or parent directories if no config file is found in the initially specified directory).</p>
-<p>Configuration files include default values as well as values for arbitrary other named configurations, for example:</p>
+<p>To use <code>config</code>, create a file <code>config.yml</code> with default as well as other arbitrary configurations. For example:</p>
 <p class="codeblock-label">
 config.yml
 </p>
@@ -129,61 +119,7 @@ config.yml
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span><span class="st">"trials"</span><span class="op">)</span></span>
 <span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span></span></code></pre></div>
-<p>The <code>get</code> function takes an optional <code>config</code> argument which determines which configuration to read values from (the “default” configuration is used if none is specified).</p>
-</div>
-<div class="section level2">
-<h2 id="configurations">Configurations<a class="anchor" aria-label="anchor" href="#configurations"></a>
-</h2>
-<p>You can specify which configuration is currently active by setting the <code>R_CONFIG_ACTIVE</code> environment variable. The <code>R_CONFIG_ACTIVE</code> variable is typically set within a site-wide <code>Renviron</code> or <code>Rprofile</code> (see <a href="https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html" class="external-link">R Startup</a> for details on these files).</p>
-<div class="sourceCode" id="cb5"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="co"># set the active configuration globally via Renviron.site or Rprofile.site</span></span>
-<span><span class="fu"><a href="https://rdrr.io/r/base/Sys.setenv.html" class="external-link">Sys.setenv</a></span><span class="op">(</span>R_CONFIG_ACTIVE <span class="op">=</span> <span class="st">"production"</span><span class="op">)</span></span>
-<span></span>
-<span><span class="co"># read configuration value (will return 30 from the "production" config)</span></span>
-<span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span><span class="st">"trials"</span><span class="op">)</span></span></code></pre></div>
-<p>You can check whether a particular configuration is active using the <code><a href="reference/is_active.html">config::is_active</a></code> function:</p>
-<div class="sourceCode" id="cb6"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/is_active.html">is_active</a></span><span class="op">(</span><span class="st">"production"</span><span class="op">)</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="defaults-and-inheritance">Defaults and Inheritance<a class="anchor" aria-label="anchor" href="#defaults-and-inheritance"></a>
-</h2>
-<p>The <code>default</code> configuration provides a set of values to use when no named configuration is active. Other configurations automatically inherit all <code>default</code> values so need only define values specialized for that configuration. For example, in this configuration the <code>production</code> configuration doesn’t specify a value for <code>trials</code> so it will be read from the <code>default</code> configuration:</p>
-<p class="codeblock-label">
-config.yml
-</p>
-<div class="sourceCode" id="cb7"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb7-1"><a href="#cb7-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb7-2"><a href="#cb7-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb7-3"><a href="#cb7-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
-<span id="cb7-4"><a href="#cb7-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb7-5"><a href="#cb7-5" aria-hidden="true" tabindex="-1"></a><span class="fu">production</span><span class="kw">:</span></span>
-<span id="cb7-6"><a href="#cb7-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
-<p>All configurations automatically inherit from the “default” configuration. Configurations can also inherit from one or more other named configurations. For example, in this file the <code>production</code> configuration inherits from the <code>test</code> configuration:</p>
-<p class="codeblock-label">
-config.yml
-</p>
-<div class="sourceCode" id="cb8"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb8-1"><a href="#cb8-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb8-2"><a href="#cb8-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb8-3"><a href="#cb8-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
-<span id="cb8-4"><a href="#cb8-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb8-5"><a href="#cb8-5" aria-hidden="true" tabindex="-1"></a><span class="fu">test</span><span class="kw">:</span></span>
-<span id="cb8-6"><a href="#cb8-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
-<span id="cb8-7"><a href="#cb8-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-test.csv"</span></span>
-<span id="cb8-8"><a href="#cb8-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb8-9"><a href="#cb8-9" aria-hidden="true" tabindex="-1"></a><span class="fu">production</span><span class="kw">:</span></span>
-<span id="cb8-10"><a href="#cb8-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> test</span></span>
-<span id="cb8-11"><a href="#cb8-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
-</div>
-<div class="section level2">
-<h2 id="configuration-files">Configuration Files<a class="anchor" aria-label="anchor" href="#configuration-files"></a>
-</h2>
-<p>By default configuration data is read from a file named <strong>config.yml</strong> within the current working directory (or parent directories if no config file is found in the initially specified directory).</p>
-<p>You can use the <code>file</code> argument of <code><a href="reference/get.html">config::get</a></code> to read from an alternate location. For example:</p>
-<div class="sourceCode" id="cb9"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"conf/config.yml"</span><span class="op">)</span></span></code></pre></div>
-<p>If you don’t want to ever scan parent directories for configuration files then you can specify <code>use_parent = FALSE</code>:</p>
-<div class="sourceCode" id="cb10"><pre class="downlit sourceCode r">
-<code class="sourceCode R"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"conf/config.yml"</span>, use_parent <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
+<p>The <code><a href="reference/get.html">config::get()</a></code> function takes an optional <code>config</code> argument which determines which configuration to read values from (the “default” configuration is used if none is specified).</p>
 </div>
 <div class="section level2">
 <h2 id="do-not-attach-the-package-using-libaryconfig">Do not attach the package using <code>libary(config)</code>
@@ -192,42 +128,6 @@ config.yml
 <p>We strongly recommend you use <code><a href="reference/get.html">config::get()</a></code> rather than attaching the package using <code><a href="https://rstudio.github.io/config/" class="external-link">library(config)</a></code>.</p>
 <p>In fact, we strongly recommend you never use <code><a href="https://rstudio.github.io/config/" class="external-link">library(config)</a></code>.</p>
 <p>The underlying reason is that the <code><a href="reference/get.html">get()</a></code> and <code><a href="reference/merge.html">merge()</a></code> functions in <a href="https://rstudio.github.io/config/" class="external-link">config</a> will mask these functions with the same names in base R.</p>
-</div>
-<div class="section level2">
-<h2 id="embedding-r-code-inside-the-yaml-file">Embedding R code inside the yaml file<a class="anchor" aria-label="anchor" href="#embedding-r-code-inside-the-yaml-file"></a>
-</h2>
-<p>You can execute R code within configuration files by prefacing values with <code>!expr</code>. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:</p>
-<p class="codeblock-label">
-config.yml
-</p>
-<div class="sourceCode" id="cb11"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb11-1"><a href="#cb11-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb11-2"><a href="#cb11-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cores</span><span class="kw">:</span><span class="at"> </span><span class="dv">2</span></span>
-<span id="cb11-3"><a href="#cb11-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">debug</span><span class="kw">:</span><span class="at"> </span><span class="ch">true</span></span>
-<span id="cb11-4"><a href="#cb11-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">server</span><span class="kw">:</span><span class="at"> </span><span class="st">"localhost:5555"</span></span>
-<span id="cb11-5"><a href="#cb11-5" aria-hidden="true" tabindex="-1"></a><span class="at">   </span></span>
-<span id="cb11-6"><a href="#cb11-6" aria-hidden="true" tabindex="-1"></a><span class="fu">production</span><span class="kw">:</span></span>
-<span id="cb11-7"><a href="#cb11-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">cores</span><span class="kw">:</span><span class="at"> !expr getOption("mc.cores")</span></span>
-<span id="cb11-8"><a href="#cb11-8" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">debug</span><span class="kw">:</span><span class="at"> !expr Sys.getenv("ENABLE_DEBUG") == "1"</span></span>
-<span id="cb11-9"><a href="#cb11-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">server</span><span class="kw">:</span><span class="at"> !expr config::get("server", file = "/etc/server-config.yml")</span></span></code></pre></div>
-<div class="section level3">
-<h3 id="referencing-previously-assigned-parameters">Referencing Previously Assigned Parameters<a class="anchor" aria-label="anchor" href="#referencing-previously-assigned-parameters"></a>
-</h3>
-<p>You can use any previously assigned parameter inside of R code so long as it is assigned directly.</p>
-<p class="codeblock-label">
-config.yml
-</p>
-<div class="sourceCode" id="cb12"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb12-1"><a href="#cb12-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb12-2"><a href="#cb12-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">file</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span>
-<span id="cb12-3"><a href="#cb12-3" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb12-4"><a href="#cb12-4" aria-hidden="true" tabindex="-1"></a><span class="fu">test</span><span class="kw">:</span></span>
-<span id="cb12-5"><a href="#cb12-5" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">data_dir</span><span class="kw">:</span><span class="at"> </span><span class="st">"test/out"</span></span>
-<span id="cb12-6"><a href="#cb12-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> !expr file.path(data_dir, file)</span></span>
-<span id="cb12-7"><a href="#cb12-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb12-8"><a href="#cb12-8" aria-hidden="true" tabindex="-1"></a><span class="fu">production</span><span class="kw">:</span></span>
-<span id="cb12-9"><a href="#cb12-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">data_dir</span><span class="kw">:</span><span class="at"> </span><span class="st">"production/out"</span></span>
-<span id="cb12-10"><a href="#cb12-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> !expr file.path(data_dir, file)</span></span></code></pre></div>
-<p>You can’t reference other expressions, but it will only generate a warning and then assign a NULL value.</p>
-</div>
 </div>
 </div>
   </main><aside class="col-md-3"><div class="links">
