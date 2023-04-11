@@ -38,7 +38,42 @@ rsconnect:
 
 Note: this value can be configured by your system administrator, so check your own system configuration!  See <https://docs.posit.co/connect/admin/appendix/configuration/#R.ConfigActive> for detail.
 
-## Using config for staging and prod
+## Using config for staging and prod on multiple servers
+
+Many customers of Posit Connect will have separate Connect instances for the purposes of separating staging and production.
+
+In this case, the system administrator needs to configure the `R_CONFIG_ACTIVE` environment variable to have different values on each machine. For example:
+
+- On the staging server: `rsconnect-staging`
+- On the production server: `rsconnect-prod`
+
+Using these example values, you could configure the `config.yml` file to look like this:
+
+<p class = "codeblock-label">config.yml</p>
+
+``` yaml
+default:
+  trials: 5
+  dataset: "data-sampled.csv"
+
+rsconnect:
+  trials: 30
+  
+rsconnect-staging:
+  inherits: rsconnect
+  dataset: "data-staging.csv"
+  
+rsconnect-prod:
+  inherits: rsconnect
+  dataset: "data.csv"
+```
+
+Note that this configuration uses the inheritance of `config` yaml files, by having a common configuration for `rsconnect` and staging and prod configurations that inherit from the `rsconnect` configuration.
+
+
+
+
+## Using config for staging and prod on a single server
 
 You may have the use case that you use the same Connect instance to host two instances of your app, for staging (test) and production.
 
@@ -53,7 +88,7 @@ Specifically, you must specify a different `config` argument to `config::get()`.
 config::get("trials", config = Sys.getenv("R_CONFIG_ACTIVE_APP"))
 ```
 
-Additionally, you may want to utilize the inheritance of `config` yaml files, by having a common configuration for `connect` and then staging and prod configurations that inherit from the `connect` configuration.
+Again, this example utilizes the inheritance of `config` yaml files, by having a common configuration for `rsconnect` and staging and prod configurations that inherit from the `rsconnect` configuration.
 
 In such a case, you may have a `config.yml` file like this:
 
@@ -65,15 +100,15 @@ default:
   trials: 5
   dataset: "data-sampled.csv"
 
-connect:
+rsconnect:
   trials: 30
   
 staging:
-  inherits: connect
+  inherits: rsconnect
   dataset: "data-staging.csv"
   
 prod:
-  inherits: connect
+  inherits: rsconnect
   dataset: "data.csv"
 ```
 
