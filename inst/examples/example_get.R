@@ -1,5 +1,3 @@
-# Create an example yaml file and write into tempdir()
-# In real usage, this config file would be at your project root
 
 yaml <- "
 default:
@@ -13,22 +11,8 @@ production:
 
 get <- base::get
 
-# only run examples if 'withr' is installed
-if (requireNamespace("withr", quietly = TRUE)) {
 
-  # These examples simulate the presence of a config file by reading from
-  # tempdir().  In the real world you would typically not use withr::with_dir(),
-  # but simply read the config file using config::get()
 
-  # write config.yaml into tempdir
-  cat(yaml, file = file.path(tempdir(), "config.yml"))
+with_config(yaml, config::get())
+with_config(yaml, config::get("trials"))
 
-  withr::with_dir(tempdir(), {
-    config::get()
-  })
-
-  withr::with_dir(tempdir(), {
-    config::get("trials")
-  })
-
-}
