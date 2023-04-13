@@ -1,2 +1,0 @@
-# Don't ignore html files in fragments, since these will be included in Rmd
-!*.html

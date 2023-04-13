@@ -14,3 +14,5 @@ vignettes/.*html
 ^revdep$
 ^cran-comments\.md$
 ^CRAN-RELEASE$
+^doc$
+^Meta$

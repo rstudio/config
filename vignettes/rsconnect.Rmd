@@ -1,6 +1,10 @@
 ---
 title: "Using config with Posit Connect"
-output: rmarkdown::html_vignette
+output:
+  rmarkdown::html_vignette:
+    css:
+    - !expr system.file("rmarkdown/templates/html_vignette/resources/vignette.css", package = "rmarkdown")
+    - codeblock.css
 vignette: >
   %\VignetteIndexEntry{Using config with Posit Connect}
   %\VignetteEngine{knitr::rmarkdown}
@@ -14,8 +18,6 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{html, child="fragments/codeblock.html", echo=FALSE}
-```
 
 The purpose of the `config` package is to respond to environment variables that could be set to different values on different machines. Specifically, config reacts to the value of `R_CONFIG_ACTIVE`, and this allows you to set configurations for different machines, e.g. in dev or production.
 
@@ -114,3 +116,24 @@ prod:
 
 
 If you configure the environment variable correctly, you should get the appropriate `dataset` values for staging (`data-staging.csv`) and prod (`data.csv`).
+
+
+## A utility function that might be helpful
+
+If you are in the situation where you wish to use a different environment variable, you can potentially save a few keystrokes by defining a utility function that wraps around `config::get()`.  Such a utility simply passes a different value for the `config` argument, like this:
+
+```r
+cfg_get_app <- function (
+  value = NULL, 
+  config = Sys.getenv("R_CONFIG_ACTIVE_APP", "default"), 
+  ...
+) {
+  config::get(value = value, config = config, ...)
+}
+```
+
+You can then call this function from your app:
+
+``` R
+cfg_get_app("value")
+```

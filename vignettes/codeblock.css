@@ -1,5 +1,4 @@
-<style>
-  .codeblock-label {
+.codeblock-label {
     color: #000;
   display: inline-block;
   border-top-left-radius: .5rem;
@@ -14,4 +13,3 @@
 .codeblock-label + div.sourceCode {
   margin-top: 0;
 }
-</style>

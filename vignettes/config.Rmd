@@ -1,8 +1,10 @@
 ---
 title: "Getting started with the config package"
-output: 
+output:
   rmarkdown::html_vignette:
-    readme: true
+    css:
+    - !expr system.file("rmarkdown/templates/html_vignette/resources/vignette.css", package = "rmarkdown")
+    - codeblock.css
 vignette: >
   %\VignetteIndexEntry{Getting started with the config package}
   %\VignetteEngine{knitr::rmarkdown}
@@ -12,10 +14,6 @@ vignette: >
 ```{r setup, include=FALSE}
 knitr::opts_chunk$set(eval = TRUE, results = 'hide')
 Sys.setenv(R_CONFIG_ACTIVE = "default")
-```
-
-
-```{html, child="fragments/codeblock.html", echo=FALSE}
 ```
 
 
