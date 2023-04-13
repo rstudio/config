@@ -71,7 +71,10 @@ get <- function(value = NULL,
 
   # load the yaml
   config_yaml <- yaml::yaml.load_file(
-    file, eval.expr = FALSE, handlers = list(expr = function(x) parse(text = x))
+    file,
+    eval.expr = FALSE,
+    handlers = list(expr = function(x) parse(text = x)),
+    readLines.warn = FALSE
   )
 
   # get the default config (required)
