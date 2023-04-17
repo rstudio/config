@@ -1,0 +1,15 @@
+.codeblock-label {
+    color: #000;
+  display: inline-block;
+  border-top-left-radius: .5rem;
+  border-top-right-radius: .5rem;
+  padding: 0.25rem 0.75rem;
+  background-color: #cccccc;
+  margin-bottom: -0em;
+  font-size: 0.875em;
+  font-family: var(--bs-font-monospace);
+}
+
+.codeblock-label + div.sourceCode {
+  margin-top: 0;
+}
