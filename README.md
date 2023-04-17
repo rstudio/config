@@ -1,6 +1,6 @@
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
-<style type="text/css">
+<style>
 .codeblock-label {
   color: #000;
   display: inline-block;

@@ -14,7 +14,7 @@ knitr::opts_chunk$set(
 )
 ```
 
-```{css, echo=FALSE}
+<style>
 .codeblock-label {
   color: #000;
   display: inline-block;
@@ -30,7 +30,7 @@ knitr::opts_chunk$set(
 .codeblock-label + div.sourceCode {
   margin-top: 0;
 }
-```
+</style>
 
 
 ```{r child="man/fragments/knitr_with_config_hooks.Rmd", include = FALSE}

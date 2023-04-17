@@ -4,7 +4,7 @@ output:
   rmarkdown::html_vignette:
     css:
     - !expr system.file("rmarkdown/templates/html_vignette/resources/vignette.css", package = "rmarkdown")
-    - codeblock.css
+    - ../man/fragments/codeblock.css
 vignette: >
   %\VignetteIndexEntry{Getting started with the config package}
   %\VignetteEngine{knitr::rmarkdown}
