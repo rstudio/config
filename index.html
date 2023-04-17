@@ -111,15 +111,34 @@ config.yml
 <span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
 <span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
 <p>To read configuration values you call the <code><a href="reference/get.html">config::get</a></code> function, which returns a list containing all of the values for the currently active configuration:</p>
+<p class="codeblock-label">
+R
+</p>
 <div class="sourceCode" id="cb3"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span><span class="op">)</span></span>
 <span><span class="va">config</span><span class="op">$</span><span class="va">trials</span></span>
-<span><span class="va">config</span><span class="op">$</span><span class="va">dataset</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="va">config</span><span class="op">$</span><span class="va">dataset</span></span>
+<span><span class="co">#&gt; [1] "data-sampled.csv"</span></span></code></pre></div>
 <p>You can also read a single value from the configuration as follows:</p>
+<p class="codeblock-label">
+R
+</p>
 <div class="sourceCode" id="cb4"><pre class="downlit sourceCode r">
 <code class="sourceCode R"><span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span><span class="st">"trials"</span><span class="op">)</span></span>
-<span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span></span></code></pre></div>
+<span><span class="co">#&gt; [1] 5</span></span>
+<span><span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="reference/get.html">get</a></span><span class="op">(</span><span class="st">"dataset"</span><span class="op">)</span></span>
+<span><span class="co">#&gt; [1] "data-sampled.csv"</span></span></code></pre></div>
 <p>The <code><a href="reference/get.html">config::get()</a></code> function takes an optional <code>config</code> argument which determines which configuration to read values from (the “default” configuration is used if none is specified).</p>
+</div>
+<div class="section level2">
+<h2 id="vignettes">Vignettes<a class="anchor" aria-label="anchor" href="#vignettes"></a>
+</h2>
+<p>See the package vignettes at <a href="https://rstudio.github.io/config/" class="external-link uri">https://rstudio.github.io/config/</a> for more examples and instructions for advanced usage, including:</p>
+<ul>
+<li>Inheritance and R expressions</li>
+<li>Using <code>config</code> on Posit Connect</li>
+</ul>
 </div>
 <div class="section level2">
 <h2 id="do-not-attach-the-package-using-libaryconfig">Do not attach the package using <code>libary(config)</code>

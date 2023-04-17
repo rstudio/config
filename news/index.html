@@ -55,6 +55,16 @@
     </div>
 
     <div class="section level2">
+<h2 class="pkg-version" data-toc-text="0.3.1.9000" id="config-0319000-development-version">config 0.3.1.9000 (development version)<a class="anchor" aria-label="anchor" href="#config-0319000-development-version"></a></h2>
+<p>New features:</p>
+<ul><li><p>Better handling of R expressions in the <code>config.yml</code>. In particular, you can now refer to other configuration values in the R expression.</p></li>
+<li><p>New function <code><a href="../reference/with_config.html">with_config()</a></code> that might be useful for testing and in vignettes.</p></li>
+<li><p>Check if package is attached and throw message to use <code>config::ge()</code> instead.</p></li>
+</ul><p>Documentation:</p>
+<ul><li>New vignettes, in particular using <code>config</code> with Posit Connect.</li>
+<li>Better documentation to not attach the package and use <code><a href="../reference/get.html">config::get()</a></code> instead.</li>
+</ul></div>
+    <div class="section level2">
 <h2 class="pkg-version" data-toc-text="0.3.1" id="config-031-2020-12-15">config 0.3.1 (2020-12-15)<a class="anchor" aria-label="anchor" href="#config-031-2020-12-15"></a></h2><p class="text-muted">CRAN release: 2020-12-17</p>
 <ul><li>Bug fix: evaluate expressions only for the active config (not all configs). In previous versions of <code>config</code>, all expressions in the <code>yml</code> file were evaluated, regardless whether these expressions were used in the active config. In this version, the appropriate config is selected, and only then are the expressions evaluated. Fixes <a href="https://github.com/rstudio/config/issues/20" class="external-link">#20</a></li>
 </ul></div>
