@@ -1,3 +1,20 @@
+# config 0.3.1.9000 (development version)
+
+New features:
+
+- Better handling of R expressions in the `config.yml`.  In particular, you can 
+now refer to other configuration values in the R expression.
+
+- New function `with_config()` that might be useful for testing and in vignettes.
+
+- Check if package is attached and throw message to use `config::ge()` instead.
+
+Documentation:
+
+- New vignettes, in particular using `config` with Posit Connect.
+- Better documentation to not attach the package and use `config::get()` instead.
+
+
 # config 0.3.1 (2020-12-15)
 
 * Bug fix: evaluate expressions only for the active config (not all configs). In
