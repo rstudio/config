@@ -4,7 +4,12 @@
 \alias{with_config}
 \title{Run code using a temporary config file.}
 \usage{
-with_config(config_yml, code, .active_config = c(R_CONFIG_ACTIVE = "default"))
+with_config(
+  config_yml,
+  code,
+  .active_config = c(R_CONFIG_ACTIVE = "default"),
+  .extra_env_vars = NULL
+)
 }
 \arguments{
 \item{config_yml}{Either the path to a config file, or a character string
@@ -14,13 +19,15 @@ representing a yaml configuration.}
 
 \item{.active_config}{A named character representing an environment variable.
 Passed to \code{\link[withr:with_envvar]{withr::with_envvar()}}.}
+
+\item{.extra_env_vars}{Additional environment variables to set.}
 }
 \value{
 The result of running the \code{code}, after having temporarily set the
 necessary environment variables.
 }
 \description{
-This function is based on \code{\link[withr:with_envvar]{withr::with_envvar()}} and may be useful for
+This function takes inspiration from \code{\link[withr:with_envvar]{withr::with_envvar()}} and may be useful for
 testing purposes.
 }
 \examples{
