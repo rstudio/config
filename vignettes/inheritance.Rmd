@@ -19,15 +19,17 @@ knitr::opts_chunk$set(
 ```
 
 
+```{r child="../man/fragments/knitr_with_config_hooks.Rmd", include = FALSE}
+```
+
 ## Defaults and inheritance
 
 The `default` configuration provides a set of values to use when no named configuration is active. Other configurations automatically inherit all `default` values so need only define values specialized for that configuration.
 
 For example, in this configuration the `production` configuration doesn't specify a value for `trials` so it will be read from the `default` configuration:
 
-<p class = "codeblock-label">config.yml</p>
 
-```yaml
+```{yaml output.var="config_yaml"}
 default:
   trials: 5
   dataset: "data-sampled.csv"
@@ -36,11 +38,17 @@ production:
   dataset: "data.csv"
 ```
 
-All configurations automatically inherit from the "default" configuration. Configurations can also inherit from one or more other named configurations. For example, in this file the `production` configuration inherits from the `test` configuration:
 
-<p class = "codeblock-label">config.yml</p>
 
-```yaml
+```{r, with_config=TRUE, config_yml="config_yaml"}
+config::get(config = "production")
+```
+
+
+All configurations automatically inherit from the `default` configuration. Configurations can also inherit from one or more other named configurations. For example, in this file the `production` configuration inherits from the `test` configuration:
+
+
+```{yaml, output.var = "config_yaml"}
 default:
   trials: 5
   dataset: "data-sampled.csv"
@@ -54,13 +62,17 @@ production:
   dataset: "data.csv"
 ```
 
-## Embedding R code inside the yaml file
 
-You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in the case where you want to base configuration values on environment variables, R options, or even other config files. For example:
+```{r, with_config=TRUE, config_yml="config_yaml"}
+config::get(config = "production")
+```
 
-<p class = "codeblock-label">config.yml</p>
+## Using R code inside the yaml file
 
-```yaml
+You can execute R code within configuration files by prefacing values with `!expr`. This could be useful in cases where you want to base configuration values on environment variables, R options, or even other config files. For example:
+
+
+```{yaml, output.var = "config_yaml"}
 default:
   cores: 2
   debug: true
@@ -69,16 +81,38 @@ default:
 production:
   cores: !expr getOption("mc.cores")
   debug: !expr Sys.getenv("ENABLE_DEBUG") == "1"
-  server: !expr config::get("server", file = "/etc/server-config.yml")
+  server: !expr config::get("server", file = "etc/server-config.yml")
 ```
+
+
+The default result:
+
+```{r, with_config=TRUE, config_yml="config_yaml"}
+config::get("server")
+```
+
+
+The production result will depend on the environment variables on the server:
+
+
+```{r, codeblock_label = "server-config.yml"}
+cat(readLines("etc/server-config.yml"), sep = "\n")
+```
+
+
+```{r, with_config=TRUE, config_yml="config_yaml"}
+config::get("server", config = "production")
+```
+
+
+
 
 ### Referencing previously assigned parameters
 
 You can use any previously assigned parameter inside of R code so long as it is assigned directly.
 
-<p class = "codeblock-label">config.yml</p>
 
-```yaml
+```{yaml, output.var = "config_yaml"}
 default:
   file: "data.csv"
 
@@ -91,4 +125,60 @@ production:
   dataset: !expr file.path(data_dir, file)
 ```
 
-You can't reference other expressions, but it will only generate a warning and then assign a NULL value.
+
+
+```{r, with_config=TRUE, config_yml="config_yaml"}
+config::get("dataset", config = "test")
+```
+
+```{r, with_config=TRUE, config_yml="config_yaml"}
+config::get(config = "production")
+```
+
+
+## Limitations of using R expressions
+
+The ability to use R expressions gives substantial flexibility to allow configurations to depend on environment variables, files and other information that's available in the target environment.
+
+However, keep in mind these limitations:
+
+- Any R expression can only refer to elements in the configuration file that it inherits from.
+- An R expression can not refer to another R expression.
+
+If the config file violates these limitations, `config::get()` will throw an error.
+
+As an example, let's say you want to construct a configuration that computes a location based on a filename and a folder.
+
+### A valid example
+
+If both `filename` and `folder` are constant (i.e. not computed expressions) this works:
+
+
+```{yaml, output.var = "config_yaml"}
+default:
+  filename: "trials.csv"
+  folder: "some/path"
+  location: !expr file.path(folder, filename)
+```
+
+
+```{r, with_config=TRUE, config_yml="config_yaml", error = TRUE}
+config::get("location")
+```
+
+### An invalid example
+
+However, if `folder` is also a computed value, then `location` can not be computed and this throws an error:
+
+```{yaml, output.var = "config_yaml"}
+default:
+  filename: "trials.csv"
+  folder: !expr c("some/path")
+  location: !expr file.path(folder, filename)
+```
+
+
+```{r, with_config=TRUE, config_yml="config_yaml", error = TRUE}
+config::get("location")
+```
+

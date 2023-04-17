@@ -12,10 +12,12 @@ vignette: >
 ---
 
 ```{r setup, include=FALSE}
-knitr::opts_chunk$set(eval = TRUE, results = 'hide')
+# knitr::opts_chunk$set(eval = TRUE, results = 'hide')
 Sys.setenv(R_CONFIG_ACTIVE = "default")
 ```
 
+```{r child="../man/fragments/knitr_with_config_hooks.Rmd", include = FALSE}
+```
 
 ## Overview
 
@@ -29,9 +31,7 @@ Configurations are defined using a [YAML](https://yaml.org/about.html) text file
 Configuration files include default values as well as values for arbitrary other named configurations, for example:
 
 
-<p class = "codeblock-label">config.yml</p>
-
-```yaml
+```{yaml output.var="config_yaml"}
 default:
   trials: 5
   dataset: "data-sampled.csv"
@@ -43,7 +43,7 @@ production:
 
 To read configuration values you call the `config::get` function, which returns a list containing all of the values for the currently active configuration:
 
-```{r, eval=FALSE}
+```{r, with_config=TRUE, config_yml="config_yaml"}
 config <- config::get()
 config$trials
 config$dataset
@@ -51,7 +51,7 @@ config$dataset
 
 You can also read a single value from the configuration as follows:
 
-```{r, eval=FALSE}
+```{r, with_config=TRUE, config_yml="config_yaml"}
 config::get("trials")
 config::get("dataset")
 ```
@@ -62,7 +62,7 @@ The `get` function takes an optional `config` argument which determines which co
 
 You can specify which configuration is currently active by setting the `R_CONFIG_ACTIVE` environment variable. The `R_CONFIG_ACTIVE` variable is typically set within a site-wide `Renviron` or `Rprofile` (see [R Startup](https://stat.ethz.ch/R-manual/R-devel/library/base/html/Startup.html) for details on these files).
 
-```{r, eval=FALSE}
+```{r, with_config=TRUE, config_yml="config_yaml"}
 # set the active configuration globally via Renviron.site or Rprofile.site
 Sys.setenv(R_CONFIG_ACTIVE = "production")
 
@@ -72,11 +72,11 @@ config::get("trials")
 
 You can check whether a particular configuration is active using the `config::is_active` function:
 
-```{r, eval=FALSE}
+```{r, with_config=TRUE, config_yml="config_yaml"}
 config::is_active("production")
 ```
 
-```{r, include=FALSE}
+```{r}
 Sys.setenv(R_CONFIG_ACTIVE = "default")
 ```
 

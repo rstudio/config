@@ -67,38 +67,3 @@ reset_envvars <- function(old_envvars) {
   }
 }
 
-#' Hook to use with knitr.
-#'
-#' @param before Passed to [knitr::knit_hooks()]
-#' @param options Passed to [knitr::knit_hooks()]
-#' @keywords Internal
-#' @noRd
-knitr_with_config_hook <- local({
-  old_envvars <- NA
-  function(before, options) {
-    if (before) {
-      config_yml <- base::get(options$config_yml, envir = knitr::knit_global())
-      .config_file <- write_yaml_as_file(config_yml)
-      new_envvars <- .config_file
-      old_envvars <<- keep_old_envvars(new_envvars)
-      set_new_envvars(new_envvars)
-    } else {
-      reset_envvars(old_envvars)
-    }
-  }
-})
-
-#' Engine for reading yaml in knitr chunks in vignettes.
-#'
-#' @inheritParams knitr_with_config_hook
-#' @keywords Internal
-#' @noRd
-knitr_yaml_engine <- function(options) {
-  code <- paste(options$code, collapse = "\n")
-  options$results <- "hide"
-  varname <- options$output.var
-  if (!is.null(varname)) {
-    assign(varname, code, envir = knitr::knit_global())
-  }
-  knitr::engine_output(options, code, out = code)
-}

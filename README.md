@@ -64,22 +64,42 @@ To read configuration values you call the `config::get` function, which
 returns a list containing all of the values for the currently active
 configuration:
 
+<p class="codeblock-label">
+R
+</p>
+
 ``` r
 config <- config::get()
 config$trials
+#> [1] 5
 config$dataset
+#> [1] "data-sampled.csv"
 ```
 
 You can also read a single value from the configuration as follows:
 
+<p class="codeblock-label">
+R
+</p>
+
 ``` r
 config::get("trials")
+#> [1] 5
 config::get("dataset")
+#> [1] "data-sampled.csv"
 ```
 
 The `config::get()` function takes an optional `config` argument which
 determines which configuration to read values from (the “default”
 configuration is used if none is specified).
+
+## Vignettes
+
+See the package vignettes at <https://rstudio.github.io/config/> for
+more examples and instructions for advanced usage, including:
+
+- Inheritance and R expressions
+- Using `config` on Posit Connect
 
 ## Do not attach the package using `libary(config)`
 

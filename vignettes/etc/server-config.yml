@@ -1,0 +1,3 @@
+default:
+  server: "production.example.com"
+

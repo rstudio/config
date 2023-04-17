@@ -2,6 +2,17 @@ url: ~
 template:
   bootstrap: 5
 
+reference:
+- title: "Manage environment specific configurations"
+  contents:
+  - config
+  - get
+  - merge
+  - is_active
+- title: "Helper functions"
+  contents:
+  - with_config
+
 
 authors:
   RStudio:
