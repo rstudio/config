@@ -150,6 +150,15 @@ get <- function(value = NULL,
   if (!is.null(value))
     active_config[[value]]
   else
-    structure(active_config, config = config, file = file)
+    structure(active_config, config = config, file = file, class = "config")
+
+}
+
+#' @export
+print.config <- function(x, ...) {
+  attr(x, "config") <- NULL
+  attr(x, "file") <- NULL
+  class(x) <- class(x)[-1]
+  NextMethod(x)
 }
 
