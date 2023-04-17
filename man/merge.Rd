@@ -2,7 +2,7 @@
 % Please edit documentation in R/merge.R
 \name{merge}
 \alias{merge}
-\title{Merge two configurations.}
+\title{Merge two configurations. Always use as \code{config::merge()}.}
 \usage{
 merge(base_config, merge_config)
 }

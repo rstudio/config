@@ -1,6 +1,6 @@
 
 
-#' Merge two configurations.
+#' Merge two configurations. Always use as `config::merge()`.
 #'
 #' Merge one configuration into another recursively.
 #'

@@ -4,7 +4,7 @@
 #' test, production). Read values using a function that determines the current
 #' environment and returns the appropriate value.
 #'
-#' The main function is [config::get()]
+#' The main function is [config::get()].
 #'
 #' @details For additional details see <https://rstudio.github.io/config/>.
 #'

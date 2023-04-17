@@ -2,7 +2,7 @@
 % Please edit documentation in R/get.R
 \name{get}
 \alias{get}
-\title{Read configuration values.}
+\title{Read configuration values. Always use as \code{config::get()}.}
 \usage{
 get(
   value = NULL,

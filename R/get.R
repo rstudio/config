@@ -1,5 +1,5 @@
 
-#' Read configuration values.
+#' Read configuration values. Always use as `config::get()`.
 #'
 #' Read from the currently active configuration, retrieving either a
 #' single named value or all values as a list.

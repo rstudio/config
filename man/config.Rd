@@ -10,7 +10,7 @@ test, production). Read values using a function that determines the current
 environment and returns the appropriate value.
 }
 \details{
-The main function is \code{\link[=get]{get()}}
+The main function is \code{\link[=get]{get()}}.
 
 For additional details see \url{https://rstudio.github.io/config/}.
 }
