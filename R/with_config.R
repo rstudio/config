@@ -1,25 +1,26 @@
 
-#' Run code using a temporary config file.
+#'Run code using a temporary config file.
 #'
-#' This function takes inspiration from [withr::with_envvar()] and may be useful for
-#' testing purposes.
+#'This function takes inspiration from [withr::with_envvar()] and may be useful
+#'for testing purposes.
 #'
-#' @param config_yml Either the path to a config file, or a character string
-#'   representing a yaml configuration.
+#'@param config_yml Either the path to a config file, or a character string
+#'  representing a yaml configuration.
 #'
-#' @param code Code to execute in a temporary environment.
+#'@param code Code to execute in a temporary environment.
 #'
-#' @param .active_config A named character representing an environment variable.
-#'   Passed to [withr::with_envvar()].
+#'@param .active_config Either a string representing a configuration, e.g.
+#'  `default`, or a named character representing an environment variable, e.g.
+#'  `c(R_CONFIG_ACTIVE = "default")`.
 #'
 #'@param .extra_env_vars Additional environment variables to set.
 #'
-#' @return The result of running the `code`, after having temporarily set the
-#'   necessary environment variables.
+#'@return The result of running the `code`, after having temporarily set the
+#'  necessary environment variables.
 #'
-#' @export
+#'@export
 #'
-#' @example inst/examples/example_with_config.R
+#'@example inst/examples/example_with_config.R
 #'
 with_config <- function(
     config_yml,
@@ -28,10 +29,19 @@ with_config <- function(
     .extra_env_vars = NULL
 ){
 
-  if (file.exists(config_yml)) {
-    .config_file = c(R_CONFIG_FILE = config_yml)
+  if (is.character(config_yml)) {
+    if (file.exists(config_yml)) {
+      .config_file = c(R_CONFIG_FILE = config_yml)
+    } else {
+      .config_file <- write_yaml_as_file(config_yml)
+    }
   } else {
-    .config_file <- write_yaml_as_file(config_yml)
+    # config_yml is a list
+    .config_file <- write_object_as_file(config_yml)
+  }
+
+  if (is.null(names(.active_config))) {
+    names(.active_config) <- "R_CONFIG_ACTIVE"
   }
 
   new_envvars <- c(.active_config, .config_file, .extra_env_vars)
@@ -39,6 +49,12 @@ with_config <- function(
   on.exit(reset_envvars(old_envvars))
   set_new_envvars(new_envvars)
   force(code)
+}
+
+write_object_as_file <- function(config_yml) {
+  new_file <- tempfile(pattern = "config", fileext = ".yml")
+  yaml::write_yaml(config_yml, file = new_file)
+  c(R_CONFIG_FILE = new_file)
 }
 
 write_yaml_as_file <- function(config_yml) {
