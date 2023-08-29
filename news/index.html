@@ -10,7 +10,7 @@
     
     <a class="navbar-brand me-2" href="../index.html">config</a>
 
-    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.1.9000</small>
+    <small class="nav-text text-muted me-auto" data-bs-toggle="tooltip" data-bs-placement="bottom" title="">0.3.2</small>
 
     
     <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbar" aria-controls="navbar" aria-expanded="false" aria-label="Toggle navigation">
@@ -55,11 +55,12 @@
     </div>
 
     <div class="section level2">
-<h2 class="pkg-version" data-toc-text="0.3.1.9000" id="config-0319000-development-version">config 0.3.1.9000 (development version)<a class="anchor" aria-label="anchor" href="#config-0319000-development-version"></a></h2>
+<h2 class="pkg-version" data-toc-text="0.3.2" id="config-032">config 0.3.2<a class="anchor" aria-label="anchor" href="#config-032"></a></h2>
 <p>New features:</p>
 <ul><li><p>Better handling of R expressions in the <code>config.yml</code>. In particular, you can now refer to other configuration values in the R expression.</p></li>
-<li><p>New function <code><a href="../reference/with_config.html">with_config()</a></code> that might be useful for testing and in vignettes.</p></li>
 <li><p>Check if package is attached and throw message to use <code>config::ge()</code> instead.</p></li>
+<li><p>New function <code><a href="../reference/with_config.html">with_config()</a></code> that might be useful for testing and in vignettes.</p></li>
+<li><p>Allow using a string for <code>.active_config</code> in <code><a href="../reference/with_config.html">with_config()</a></code></p></li>
 </ul><p>Documentation:</p>
 <ul><li>New vignettes, in particular using <code>config</code> with Posit Connect.</li>
 <li>Better documentation to not attach the package and use <code><a href="../reference/get.html">config::get()</a></code> instead.</li>
