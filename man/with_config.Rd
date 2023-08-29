@@ -17,8 +17,9 @@ representing a yaml configuration.}
 
 \item{code}{Code to execute in a temporary environment.}
 
-\item{.active_config}{A named character representing an environment variable.
-Passed to \code{\link[withr:with_envvar]{withr::with_envvar()}}.}
+\item{.active_config}{Either a string representing a configuration, e.g.
+\code{default}, or a named character representing an environment variable, e.g.
+\code{c(R_CONFIG_ACTIVE = "default")}.}
 
 \item{.extra_env_vars}{Additional environment variables to set.}
 }
@@ -27,8 +28,8 @@ The result of running the \code{code}, after having temporarily set the
 necessary environment variables.
 }
 \description{
-This function takes inspiration from \code{\link[withr:with_envvar]{withr::with_envvar()}} and may be useful for
-testing purposes.
+This function takes inspiration from \code{\link[withr:with_envvar]{withr::with_envvar()}} and may be useful
+for testing purposes.
 }
 \examples{
 

@@ -5,9 +5,12 @@ New features:
 - Better handling of R expressions in the `config.yml`.  In particular, you can 
 now refer to other configuration values in the R expression.
 
+- Check if package is attached and throw message to use `config::ge()` instead.
+
 - New function `with_config()` that might be useful for testing and in vignettes.
 
-- Check if package is attached and throw message to use `config::ge()` instead.
+- Allow using a string for `.active_config` in `with_config()`
+
 
 Documentation:
 
