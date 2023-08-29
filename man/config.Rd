@@ -3,6 +3,7 @@
 \docType{package}
 \name{config}
 \alias{config}
+\alias{config-package}
 \title{Manage Environment Specific Configuration Values.}
 \description{
 Manage configuration values across multiple environments (e.g. development,
@@ -14,3 +15,27 @@ The main function is \code{\link[=get]{get()}}.
 
 For additional details see \url{https://rstudio.github.io/config/}.
 }
+\seealso{
+Useful links:
+\itemize{
+  \item \url{https://rstudio.github.io/config/}
+  \item \url{https://github.com/rstudio/config}
+  \item Report bugs at \url{https://github.com/rstudio/config/issues}
+}
+
+}
+\author{
+\strong{Maintainer}: Andrie de Vries \email{apdevries@gmail.com}
+
+Authors:
+\itemize{
+  \item JJ Allaire \email{jj@rstudio.com}
+}
+
+Other contributors:
+\itemize{
+  \item Posit Software, PBC [copyright holder, funder]
+}
+
+}
+\keyword{internal}

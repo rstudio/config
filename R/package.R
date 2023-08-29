@@ -10,6 +10,10 @@
 #'
 #' @import yaml
 #'
-#' @docType package
 #' @name config
+#' @keywords internal
+"_PACKAGE"
+
+## usethis namespace: start
+## usethis namespace: end
 NULL

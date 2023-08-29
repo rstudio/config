@@ -1,11 +1,10 @@
 CMD
 Codecov
-ConfigActive
+PBC
+Vries
 YAML
+de
 dev
-github
-https
-io
-rstudio
+funder
 yaml
 yml
