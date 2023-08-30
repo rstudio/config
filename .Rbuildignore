@@ -16,3 +16,4 @@ vignettes/.*html
 ^CRAN-RELEASE$
 ^doc$
 ^Meta$
+^CRAN-SUBMISSION$
