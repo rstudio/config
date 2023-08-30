@@ -1,19 +1,19 @@
-## Test environments
+This release of `config` fixes a problem with the package help documentation, as requested by Kurt Hornik.
 
-* local R installation, R 4.0.3
-* ubuntu 16.04 (on Github Actions), R-devel, R-release and R-oldrel
-* win-builder (devel)
+## Reverse dependencies
 
-## R CMD check results
+Unfortunately this introduces two small problems with reverse dependencies.
 
-0 errors | 0 warnings | 1 note
+I checked 58 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
 
-This update also changes the maintainer from JJ Allaire to Andrie de Vries
+* 56 packages have no problems
+* 2 packages fail with conflicts in namespace
+ 
+These failures occur because of incorrect imports of the `config` package.  I have written to both package authors and created a pull request on their repo. I also requested that they submit a new version to CRAN.
 
-
-## revdepcheck results
-
-We checked 20 reverse dependencies, comparing R CMD check results across CRAN and dev versions of this package.
-
- * We saw 0 new problems
- * We failed to check 0 packages
+* `cognitoR`
+  - https://github.com/chi2labs/cognitoR
+  
+* `ProPublicaR` 
+  - https://github.com/dietrichson/ProPublicaR
+  
