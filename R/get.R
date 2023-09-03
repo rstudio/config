@@ -73,9 +73,13 @@ get <- function(value = NULL,
   config_yaml <- yaml::yaml.load_file(
     file,
     eval.expr = FALSE,
-    handlers = list(expr = function(x) parse(text = x)),
+    handlers = list(expr = function(x) {
+      # print(x)
+      parse(text = x)
+    }),
     readLines.warn = FALSE
   )
+
 
   # get the default config (required)
   default_config <- config_yaml[["default"]]
@@ -91,6 +95,12 @@ get <- function(value = NULL,
 
     # get the requested config
     active_config <- config_yaml[[config]]
+    # if (config == "shinyapps") browser()
+    if (!is.null(active_config$inherits)) {
+      inh <- active_config$inherits
+      if (is.expression(active_config$inherits)) {}
+      active_config$inherits <- eval(inh, envir = baseenv())
+    }
 
     # if it isn't the default configuration then see if it inherits from
     # another configuration. if it does then resolve and merge with it,

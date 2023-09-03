@@ -1,0 +1,11 @@
+default:
+  letter: 'a'
+
+b:
+  letter: 'b'
+
+shinyapps:
+  inherits: !expr Sys.getenv("CONFIG", "default")
+
+noinherit:
+  letter: "c"

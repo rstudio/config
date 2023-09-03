@@ -21,4 +21,27 @@ test_that("configurations can inherit from multiple other configurations", {
   expect_identical(config$log, TRUE)
 })
 
-
+test_that("inheritance can be an expression", {
+  expect_equal(
+    config::get("letter", file = "config-inherits-expr.yml"),
+    "a"
+  )
+  withr::with_envvar(c(CONFIG = "b"), {
+    expect_equal(
+      config::get("letter", config = "b", file = "config-inherits-expr.yml"),
+      "b"
+    )
+  })
+  withr::with_envvar(c(CONFIG = "b"), {
+    expect_equal(
+      config::get("letter", config = "shinyapps", file = "config-inherits-expr.yml"),
+      "b"
+    )
+  })
+  withr::with_envvar(c(CONFIG = "b"), {
+    expect_equal(
+      config::get("letter", config = "noinherit", file = "config-inherits-expr.yml"),
+      "c"
+    )
+  })
+})
