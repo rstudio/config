@@ -1,4 +1,4 @@
-# config (development version)
+# config 0.3.2.9000 (development version)
 
 New features:
 
