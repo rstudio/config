@@ -1,3 +1,9 @@
+# config 0.3.2.9000 (development version)
+
+New features:
+
+- Allow expressions in the `inherits:` line of the yaml file (#38)
+
 # config 0.3.2
 
 New features:
