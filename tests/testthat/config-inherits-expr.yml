@@ -5,7 +5,7 @@ b:
   letter: 'b'
 
 shinyapps:
-  inherits: !expr Sys.getenv("CONFIG", "default")
+  inherits: !expr Sys.getenv("CONFIG")
 
 noinherit:
   letter: "c"

@@ -44,4 +44,30 @@ test_that("inheritance can be an expression", {
       "c"
     )
   })
+
+  yml_file <- "config-inherits-expr.yml"
+  expect_identical(
+    config::get(file = "config-inherits-expr.yml"),
+    structure(
+      list(
+        letter = "a"
+      ),
+      config = "default",
+      class = "config",
+      file = normalizePath(yml_file)
+    )
+  )
+  withr::with_envvar(c(CONFIG = "b"), {
+    expect_identical(
+    config::get(file = "config-inherits-expr.yml"),
+    structure(
+      list(
+        letter = "a"
+      ),
+      config = "default",
+      class = "config",
+      file = normalizePath(yml_file)
+    )
+  )
+  })
 })
