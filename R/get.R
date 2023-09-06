@@ -160,7 +160,12 @@ get <- function(value = NULL,
   if (!is.null(value))
     active_config[[value]]
   else
-    structure(active_config, config = config, file = file, class = "config")
+    structure(
+      active_config,
+      config = config,
+      file = file,
+      class = c("config", class(active_config))
+    )
 
 }
 

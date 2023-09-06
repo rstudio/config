@@ -53,7 +53,7 @@ test_that("inheritance can be an expression", {
         letter = "a"
       ),
       config = "default",
-      class = "config",
+      class = c("config", "list"),
       file = normalizePath(yml_file)
     )
   )
@@ -65,7 +65,7 @@ test_that("inheritance can be an expression", {
         letter = "a"
       ),
       config = "default",
-      class = "config",
+      class = c("config", "list"),
       file = normalizePath(yml_file)
     )
   )

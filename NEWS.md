@@ -4,6 +4,12 @@ New features:
 
 - Allow expressions in the `inherits:` line of the yaml file (#38)
 
+
+Bug fixes:
+
+- Fixes bug introduced in v0.3.2 where the result of `config::get()` doesn't 
+have the correct class, resulting in problems converting to JSON (#49)
+
 # config 0.3.2
 
 New features:
