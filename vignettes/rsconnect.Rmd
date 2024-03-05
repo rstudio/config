@@ -78,9 +78,11 @@ Note that this configuration uses the inheritance of `config` yaml files, by hav
 
 You may have the use case that you use the same Connect instance to host two instances of your app, for staging (test) and production.
 
-In this use case you will soon run into the problem that an individual user can not change the the environment variable `R_CONFIG_ACTIVE`, since this is configured system-wide by the administrator.
+The [May 2023 release of Connect](https://docs.posit.co/connect/news/#posit-connect-2023.05.0) added support for allowing users to override the value of `R_CONFIG_ACTIVE`.
 
-But you can still use `config` to set different values for staging and prod, by changing the environment variable that `config::get()` looks at.
+If using a version of Connect newer than `2023.05.0`, you can change the value of `R_CONFIG_ACTIVE` using the `envVars` argument of  [`rsconnect::deployApp()`](https://rstudio.github.io/rsconnect/reference/deployApp.html#arguments) or the [Connect Server API](https://docs.posit.co/connect/api/#patch-/v1/content/-guid-/environment).
+
+If using a version of Connect less than or equal to `2023.05.0`, you can use `config` to set different values for staging and prod, by changing the environment variable that `config::get()` looks at.
 
 
 Specifically, you must specify a different `config` argument to `config::get()`.  For example, you can create a new environment variable for your Connect app, called `R_CONFIG_ACTIVE_APP`, and then use `config::get()` like this:
