@@ -14,8 +14,8 @@
 <link rel="apple-touch-icon" type="image/png" sizes="76x76" href="../apple-touch-icon-76x76.png">
 <link rel="apple-touch-icon" type="image/png" sizes="60x60" href="../apple-touch-icon-60x60.png">
 <script src="../deps/jquery-3.6.0/jquery-3.6.0.min.js"></script><meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-<link href="../deps/bootstrap-5.2.2/bootstrap.min.css" rel="stylesheet">
-<script src="../deps/bootstrap-5.2.2/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
+<link href="../deps/bootstrap-5.3.1/bootstrap.min.css" rel="stylesheet">
+<script src="../deps/bootstrap-5.3.1/bootstrap.bundle.min.js"></script><!-- Font Awesome icons --><link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/all.min.css" integrity="sha256-mmgLkCYLUQbXn0B1SRqzHar6dCnv9oZFPEC1g1cwlkk=" crossorigin="anonymous">
 <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.12.1/css/v4-shims.min.css" integrity="sha256-wZjR52fzng1pJHwx4aV2AO3yyTOXrcDW7jBpJtTwVxw=" crossorigin="anonymous">
 <!-- bootstrap-toc --><script src="https://cdn.jsdelivr.net/gh/afeld/bootstrap-toc@v1.0.1/dist/bootstrap-toc.min.js" integrity="sha256-4veVQbu7//Lk5TSmc7YV48MxtMy98e26cf5MrgZYnwo=" crossorigin="anonymous"></script><!-- headroom.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/headroom.min.js" integrity="sha256-AsUX4SJE1+yuDu5+mAVzJbuYNPHj/WroHuZ8Ir/CkE0=" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/headroom/0.11.0/jQuery.headroom.min.js" integrity="sha256-ZX/yNShbjqsohH1k95liqY9Gd8uOiE1S4vZc+9KQ1K4=" crossorigin="anonymous"></script><!-- clipboard.js --><script src="https://cdnjs.cloudflare.com/ajax/libs/clipboard.js/2.0.6/clipboard.min.js" integrity="sha256-inc5kl9MA1hkeYUt+EC3BhlIgyp/2jDIyBLS6k3UxPI=" crossorigin="anonymous"></script><!-- search --><script src="https://cdnjs.cloudflare.com/ajax/libs/fuse.js/6.4.6/fuse.js" integrity="sha512-zv6Ywkjyktsohkbp9bb45V6tEMoWhzFzXis+LrMehmJZZSys19Yxf1dopHx7WzIKxr5tK2dVcYmaCk2uqdjF4A==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/autocomplete.js/0.38.0/autocomplete.jquery.min.js" integrity="sha512-GU9ayf+66Xx2TmpxqJpliWbT5PiGYxpaG8rfnBEk1LL8l1KGkRShhngwdXK1UgqhAzWpZHSiYPc09/NwDQIGyg==" crossorigin="anonymous"></script><script src="https://cdnjs.cloudflare.com/ajax/libs/mark.js/8.11.1/mark.min.js" integrity="sha512-5CYOlHXGh6QpOFA/TeTylKLWfB3ftPsde7AnmhuitiTX4K5SqCLBeKro6sPS8ilsz1Q4NRx3v8Ko2IBiszzdww==" crossorigin="anonymous"></script><!-- pkgdown --><script src="../pkgdown.js"></script><link href="../extra.css" rel="stylesheet">
 <meta property="og:title" content="Using config with Posit Connect">
@@ -105,13 +105,13 @@ the fact that Connect sets the value of <code>R_CONFIG_ACTIVE</code> to
 <p class="codeblock-label">
 config.yml
 </p>
-<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb1-2"><a href="#cb1-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb1-3"><a href="#cb1-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
-<span id="cb1-4"><a href="#cb1-4" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb1-5"><a href="#cb1-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rsconnect</span><span class="kw">:</span></span>
-<span id="cb1-6"><a href="#cb1-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
-<span id="cb1-7"><a href="#cb1-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
+<div class="sourceCode" id="cb1"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb1-1"><a href="#cb1-1" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
+<span id="cb1-2"><a href="#cb1-2" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb1-3"><a href="#cb1-3" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
+<span id="cb1-4"><a href="#cb1-4" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb1-5"><a href="#cb1-5" tabindex="-1"></a><span class="fu">rsconnect</span><span class="kw">:</span></span>
+<span id="cb1-6"><a href="#cb1-6" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
+<span id="cb1-7"><a href="#cb1-7" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
 <p>Note: this value can be configured by your system administrator, so
 check your own system configuration! See <a href="https://docs.posit.co/connect/admin/appendix/configuration/#R.ConfigActive" class="external-link uri">https://docs.posit.co/connect/admin/appendix/configuration/#R.ConfigActive</a>
 for detail.</p>
@@ -134,20 +134,20 @@ values on each machine. For example:</p>
 <p class="codeblock-label">
 config.yml
 </p>
-<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb2-2"><a href="#cb2-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb2-3"><a href="#cb2-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
-<span id="cb2-4"><a href="#cb2-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb2-5"><a href="#cb2-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rsconnect</span><span class="kw">:</span></span>
-<span id="cb2-6"><a href="#cb2-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
-<span id="cb2-7"><a href="#cb2-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb2-8"><a href="#cb2-8" aria-hidden="true" tabindex="-1"></a><span class="fu">rsconnect-staging</span><span class="kw">:</span></span>
-<span id="cb2-9"><a href="#cb2-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
-<span id="cb2-10"><a href="#cb2-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-staging.csv"</span></span>
-<span id="cb2-11"><a href="#cb2-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb2-12"><a href="#cb2-12" aria-hidden="true" tabindex="-1"></a><span class="fu">rsconnect-prod</span><span class="kw">:</span></span>
-<span id="cb2-13"><a href="#cb2-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
-<span id="cb2-14"><a href="#cb2-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
+<div class="sourceCode" id="cb2"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb2-1"><a href="#cb2-1" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
+<span id="cb2-2"><a href="#cb2-2" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb2-3"><a href="#cb2-3" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
+<span id="cb2-4"><a href="#cb2-4" tabindex="-1"></a></span>
+<span id="cb2-5"><a href="#cb2-5" tabindex="-1"></a><span class="fu">rsconnect</span><span class="kw">:</span></span>
+<span id="cb2-6"><a href="#cb2-6" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
+<span id="cb2-7"><a href="#cb2-7" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb2-8"><a href="#cb2-8" tabindex="-1"></a><span class="fu">rsconnect-staging</span><span class="kw">:</span></span>
+<span id="cb2-9"><a href="#cb2-9" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
+<span id="cb2-10"><a href="#cb2-10" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-staging.csv"</span></span>
+<span id="cb2-11"><a href="#cb2-11" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb2-12"><a href="#cb2-12" tabindex="-1"></a><span class="fu">rsconnect-prod</span><span class="kw">:</span></span>
+<span id="cb2-13"><a href="#cb2-13" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
+<span id="cb2-14"><a href="#cb2-14" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
 <p>Note that this configuration uses the inheritance of
 <code>config</code> yaml files, by having a common configuration for
 <code>rsconnect</code> and staging and prod configurations that inherit
@@ -158,12 +158,17 @@ from the <code>rsconnect</code> configuration.</p>
 </h2>
 <p>You may have the use case that you use the same Connect instance to
 host two instances of your app, for staging (test) and production.</p>
-<p>In this use case you will soon run into the problem that an
-individual user can not change the the environment variable
-<code>R_CONFIG_ACTIVE</code>, since this is configured system-wide by
-the administrator.</p>
-<p>But you can still use <code>config</code> to set different values for
-staging and prod, by changing the environment variable that
+<p>The <a href="https://docs.posit.co/connect/news/#posit-connect-2023.05.0" class="external-link">May
+2023 release of Connect</a> added support for allowing users to override
+the value of <code>R_CONFIG_ACTIVE</code>.</p>
+<p>If using a version of Connect newer than <code>2023.05.0</code>, you
+can change the value of <code>R_CONFIG_ACTIVE</code> using the
+<code>envVars</code> argument of <a href="https://rstudio.github.io/rsconnect/reference/deployApp.html#arguments" class="external-link"><code>rsconnect::deployApp()</code></a>
+or the <a href="https://docs.posit.co/connect/api/#patch-/v1/content/-guid-/environment" class="external-link">Connect
+Server API</a>.</p>
+<p>If using a version of Connect less than or equal to
+<code>2023.05.0</code>, you can use <code>config</code> to set different
+values for staging and prod, by changing the environment variable that
 <code><a href="../reference/get.html">config::get()</a></code> looks at.</p>
 <p>Specifically, you must specify a different <code>config</code>
 argument to <code><a href="../reference/get.html">config::get()</a></code>. For example, you can create a
@@ -185,20 +190,20 @@ this:</p>
 <p class="codeblock-label">
 config.yml
 </p>
-<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" aria-hidden="true" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
-<span id="cb4-2"><a href="#cb4-2" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
-<span id="cb4-3"><a href="#cb4-3" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
-<span id="cb4-4"><a href="#cb4-4" aria-hidden="true" tabindex="-1"></a></span>
-<span id="cb4-5"><a href="#cb4-5" aria-hidden="true" tabindex="-1"></a><span class="fu">rsconnect</span><span class="kw">:</span></span>
-<span id="cb4-6"><a href="#cb4-6" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
-<span id="cb4-7"><a href="#cb4-7" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb4-8"><a href="#cb4-8" aria-hidden="true" tabindex="-1"></a><span class="fu">staging</span><span class="kw">:</span></span>
-<span id="cb4-9"><a href="#cb4-9" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
-<span id="cb4-10"><a href="#cb4-10" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-staging.csv"</span></span>
-<span id="cb4-11"><a href="#cb4-11" aria-hidden="true" tabindex="-1"></a><span class="at">  </span></span>
-<span id="cb4-12"><a href="#cb4-12" aria-hidden="true" tabindex="-1"></a><span class="fu">prod</span><span class="kw">:</span></span>
-<span id="cb4-13"><a href="#cb4-13" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
-<span id="cb4-14"><a href="#cb4-14" aria-hidden="true" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
+<div class="sourceCode" id="cb4"><pre class="sourceCode yaml"><code class="sourceCode yaml"><span id="cb4-1"><a href="#cb4-1" tabindex="-1"></a><span class="fu">default</span><span class="kw">:</span></span>
+<span id="cb4-2"><a href="#cb4-2" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">5</span></span>
+<span id="cb4-3"><a href="#cb4-3" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-sampled.csv"</span></span>
+<span id="cb4-4"><a href="#cb4-4" tabindex="-1"></a></span>
+<span id="cb4-5"><a href="#cb4-5" tabindex="-1"></a><span class="fu">rsconnect</span><span class="kw">:</span></span>
+<span id="cb4-6"><a href="#cb4-6" tabindex="-1"></a><span class="at">  </span><span class="fu">trials</span><span class="kw">:</span><span class="at"> </span><span class="dv">30</span></span>
+<span id="cb4-7"><a href="#cb4-7" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb4-8"><a href="#cb4-8" tabindex="-1"></a><span class="fu">staging</span><span class="kw">:</span></span>
+<span id="cb4-9"><a href="#cb4-9" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
+<span id="cb4-10"><a href="#cb4-10" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data-staging.csv"</span></span>
+<span id="cb4-11"><a href="#cb4-11" tabindex="-1"></a><span class="at">  </span></span>
+<span id="cb4-12"><a href="#cb4-12" tabindex="-1"></a><span class="fu">prod</span><span class="kw">:</span></span>
+<span id="cb4-13"><a href="#cb4-13" tabindex="-1"></a><span class="at">  </span><span class="fu">inherits</span><span class="kw">:</span><span class="at"> rsconnect</span></span>
+<span id="cb4-14"><a href="#cb4-14" tabindex="-1"></a><span class="at">  </span><span class="fu">dataset</span><span class="kw">:</span><span class="at"> </span><span class="st">"data.csv"</span></span></code></pre></div>
 <p>If you configure the environment variable correctly, you should get
 the appropriate <code>dataset</code> values for staging
 (<code>data-staging.csv</code>) and prod (<code>data.csv</code>):</p>
