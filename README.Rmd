@@ -1,5 +1,7 @@
 ---
 output: github_document
+format: gfm
+default-image-extension: ""
 ---
 
 <!-- README.md is generated from README.Rmd. Please edit that file -->
@@ -40,6 +42,7 @@ knitr::opts_chunk$set(
 
 <!-- badges: start -->
 [![CRAN status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org/package=config)
+[![CRAN RStudio mirror downloads](https://cranlogs.r-pkg.org/badges/miniCRAN)](https://www.r-pkg.org/pkg/miniCRAN)
 [![R-CMD-check](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
 [![Codecov test coverage](https://codecov.io/gh/rstudio/config/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rstudio/config?branch=main)
 <!-- badges: end -->

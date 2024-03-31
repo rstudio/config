@@ -1,4 +1,5 @@
 
+
 <!-- README.md is generated from README.Rmd. Please edit that file -->
 <style>
 .codeblock-label {
@@ -12,8 +13,7 @@
   font-size: 0.875em;
   font-family: var(--bs-font-monospace);
 }
-  
-.codeblock-label + div.sourceCode {
+  &#10;.codeblock-label + div.sourceCode {
   margin-top: 0;
 }
 </style>
@@ -24,6 +24,8 @@
 
 [![CRAN
 status](https://www.r-pkg.org/badges/version/config)](https://CRAN.R-project.org/package=config)
+[![CRAN RStudio mirror
+downloads](https://cranlogs.r-pkg.org/badges/miniCRAN)](https://www.r-pkg.org/pkg/miniCRAN)
 [![R-CMD-check](https://github.com/rstudio/config/workflows/R-CMD-check/badge.svg)](https://github.com/rstudio/config/actions)
 [![Codecov test
 coverage](https://codecov.io/gh/rstudio/config/branch/main/graph/badge.svg)](https://app.codecov.io/gh/rstudio/config?branch=main)
