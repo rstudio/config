@@ -1,45 +1,17 @@
-<?xml version="1.0" encoding="UTF-8"?>
-<urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
-  <url>
-    <loc>/404.html</loc>
-  </url>
-  <url>
-    <loc>/articles/config.html</loc>
-  </url>
-  <url>
-    <loc>/articles/index.html</loc>
-  </url>
-  <url>
-    <loc>/articles/inheritance.html</loc>
-  </url>
-  <url>
-    <loc>/articles/rsconnect.html</loc>
-  </url>
-  <url>
-    <loc>/authors.html</loc>
-  </url>
-  <url>
-    <loc>/index.html</loc>
-  </url>
-  <url>
-    <loc>/news/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/config.html</loc>
-  </url>
-  <url>
-    <loc>/reference/get.html</loc>
-  </url>
-  <url>
-    <loc>/reference/index.html</loc>
-  </url>
-  <url>
-    <loc>/reference/is_active.html</loc>
-  </url>
-  <url>
-    <loc>/reference/merge.html</loc>
-  </url>
-  <url>
-    <loc>/reference/with_config.html</loc>
-  </url>
+<urlset xmlns = 'http://www.sitemaps.org/schemas/sitemap/0.9'>
+<url><loc>/404.html</loc></url>
+<url><loc>/articles/config.html</loc></url>
+<url><loc>/articles/index.html</loc></url>
+<url><loc>/articles/inheritance.html</loc></url>
+<url><loc>/articles/rsconnect.html</loc></url>
+<url><loc>/authors.html</loc></url>
+<url><loc>/index.html</loc></url>
+<url><loc>/news/index.html</loc></url>
+<url><loc>/reference/config.html</loc></url>
+<url><loc>/reference/get.html</loc></url>
+<url><loc>/reference/index.html</loc></url>
+<url><loc>/reference/is_active.html</loc></url>
+<url><loc>/reference/merge.html</loc></url>
+<url><loc>/reference/with_config.html</loc></url>
 </urlset>
+

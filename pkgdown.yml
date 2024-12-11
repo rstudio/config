@@ -1,9 +1,8 @@
 pandoc: 3.1.11
-pkgdown: 2.0.7
+pkgdown: 2.1.1
 pkgdown_sha: ~
 articles:
   config: config.html
   inheritance: inheritance.html
   rsconnect: rsconnect.html
-last_built: 2024-03-31T17:26Z
-
+last_built: 2024-12-11T13:38Z
