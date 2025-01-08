@@ -2,8 +2,8 @@
 % Please edit documentation in R/package.R
 \docType{package}
 \name{config}
-\alias{config}
 \alias{config-package}
+\alias{config}
 \title{Manage Environment Specific Configuration Values.}
 \description{
 Manage configuration values across multiple environments (e.g. development,
