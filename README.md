@@ -103,7 +103,7 @@ more examples and instructions for advanced usage, including:
 - Inheritance and R expressions
 - Using `config` on Posit Connect
 
-## Do not attach the package using `libary(config)`
+## Do not attach the package using `library(config)`
 
 We strongly recommend you use `config::get()` rather than attaching the
 package using `library(config)`.
