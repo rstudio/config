@@ -100,3 +100,4 @@ See the package vignettes at <https://rstudio.github.io/config/> for more exampl
 
 ```{r child="man/fragments/no_attach.Rmd"}
 ```
+ 

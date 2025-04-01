@@ -1,6 +1,6 @@
 
-
 <!-- README.md is generated from README.Rmd. Please edit that file -->
+
 <style>
 .codeblock-label {
   color: #000;
@@ -49,6 +49,7 @@ To use `config`, create a file `config.yml` with default as well as
 other arbitrary configurations. For example:
 
 <p class="codeblock-label">
+
 config.yml
 </p>
 
@@ -67,6 +68,7 @@ returns a list containing all of the values for the currently active
 configuration:
 
 <p class="codeblock-label">
+
 R
 </p>
 
@@ -81,6 +83,7 @@ config$dataset
 You can also read a single value from the configuration as follows:
 
 <p class="codeblock-label">
+
 R
 </p>
 
@@ -103,7 +106,7 @@ more examples and instructions for advanced usage, including:
 - Inheritance and R expressions
 - Using `config` on Posit Connect
 
-## Do not attach the package using `libary(config)`
+## Do not attach the package using `library(config)`
 
 We strongly recommend you use `config::get()` rather than attaching the
 package using `library(config)`.

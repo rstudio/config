@@ -10,6 +10,10 @@ Bug fixes:
 - Fixes bug introduced in v0.3.2 where the result of `config::get()` doesn't 
 have the correct class, resulting in problems converting to JSON (#49)
 
+Other:
+
+- New package logo
+
 # config 0.3.2
 
 New features:
