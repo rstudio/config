@@ -184,14 +184,14 @@ R
 <code class="sourceCode R"><span><span class="va">config</span> <span class="op">&lt;-</span> <span class="fu">config</span><span class="fu">::</span><span class="fu"><a href="../reference/get.html">get</a></span><span class="op">(</span>file <span class="op">=</span> <span class="st">"conf/config.yml"</span>, use_parent <span class="op">=</span> <span class="cn">FALSE</span><span class="op">)</span></span></code></pre></div>
 </div>
 <div class="section level2">
-<h2 id="do-not-attach-the-package-using-libaryconfig">Do not attach the package using <code>libary(config)</code><a class="anchor" aria-label="anchor" href="#do-not-attach-the-package-using-libaryconfig"></a>
+<h2 id="do-not-attach-the-package-using-libraryconfig">Do not attach the package using <code>library(config)</code><a class="anchor" aria-label="anchor" href="#do-not-attach-the-package-using-libraryconfig"></a>
 </h2>
 <p>We strongly recommend you use <code><a href="../reference/get.html">config::get()</a></code> rather than
-attaching the package using <code><a href="https://rstudio.github.io/config/" class="external-link">library(config)</a></code>.</p>
+attaching the package using <code><a href="https://rstudio.github.io/config/">library(config)</a></code>.</p>
 <p>In fact, we strongly recommend you never use
-<code><a href="https://rstudio.github.io/config/" class="external-link">library(config)</a></code>.</p>
+<code><a href="https://rstudio.github.io/config/">library(config)</a></code>.</p>
 <p>The underlying reason is that the <code><a href="../reference/get.html">get()</a></code> and
-<code><a href="../reference/merge.html">merge()</a></code> functions in <a href="https://rstudio.github.io/config/" class="external-link">config</a> will mask these
+<code><a href="../reference/merge.html">merge()</a></code> functions in <a href="https://rstudio.github.io/config/">config</a> will mask these
 functions with the same names in base R.</p>
 </div>
   </main><aside class="col-md-3"><nav id="toc" aria-label="Table of contents"><h2>On this page</h2>
